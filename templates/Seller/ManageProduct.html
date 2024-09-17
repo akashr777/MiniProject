@@ -1,0 +1,95 @@
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />#}
+{#<title>Untitled Document</title>#}
+{#</head>#}
+{##}
+{#<body>#}
+{#<form id="form1" name="form1" method="post" action="">#}
+{#  <table width="302" border="1">#}
+{#    <tr>#}
+{#      <td colspan="6"><label>Name#}
+{#          <input type="text" name="textfield" />#}
+{#          <input type="submit" name="Submit" value="Search" />#}
+{#      </label></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <td width="18">Name</td>#}
+{#      <td width="28">Image</td>#}
+{#      <td width="28">Stock</td>#}
+{#      <td width="28">Price</td>#}
+{#      <td width="28">Category</td>#}
+{#      <td width="132">&nbsp;</td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <td>&nbsp;</td>#}
+{#      <td>&nbsp;</td>#}
+{#      <td>&nbsp;</td>#}
+{#      <td>&nbsp;</td>#}
+{#      <td>&nbsp;</td>#}
+{#      <td><p><a href="#">Delete</a></p>#}
+{#      <p><a href="#">Edit</a></p></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <td colspan="6"><div align="center"><a href="#">#}
+{#        <label>#}
+{#        <input type="submit" name="Submit2" value="Add New Product" />#}
+{#        </label>#}
+{#      </a></div></td>#}
+{#    </tr>#}
+{#  </table>#}
+{#</form>#}
+{#</body>#}
+{#</html>#}
+{% extends 'Seller/Sellerhome1.html' %}
+{% block body %}
+    <div>
+    <form method="post" action="/ProductList_post">
+     <table class="table table-hover">
+      <tr> <td><h>MANAGE PRODUCT</h></td></tr>
+    <tr>
+        <td>
+
+        </td><td>
+            <input type="text" name="s" class="form-control" placeholder="Search by Name" value="{{ s }}">
+        </td><td>
+           <select name="cat" class="form-control">
+               <option value="0">ALL CATEGORY</option>
+               {% for i in cat %}
+                   <option value="{{ i.id }}" {% if cc == i.id %} selected {% endif %}>{{ i.category }}</option>
+               {% endfor %}
+           </select>
+        </td>
+        <td>
+            <input type="submit" value="Search" class="btn btn-primary">
+        </td> <td>
+            <a href="/AddPrduct" class="btn btn-info">Add New</a>
+        </td>
+    </tr>
+    </table>
+    </form>
+    <br/>
+    </div>
+
+ <div class="row">
+{% for i in val %}
+
+     <div class="col-sm-3"  style="{padding-bottom: 15px;}">
+         <div class="card">
+     <p><img src="{{ i.photo.url }}" width="100px" height="100px"></p>
+                    <p>{{ i.name }}</p>
+                    <p> Stock    : {{ i.stock }}</p>
+                    <p> Price    : {{ i.price }}</p>
+                    <p> Category :{{ i.CATEGORY.category }}</p>
+     <p><a href="/edit_product/{{ i.id }}" class="btn btn-info">Edit</a> &nbsp; &nbsp;<a href="/delete_product/{{ i.id }}" class="btn btn-danger">Delete</a> </p>
+                </div>
+
+     </div>
+
+
+
+{% endfor %}
+ </div>
+
+{% endblock %}

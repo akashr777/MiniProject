@@ -1,0 +1,153 @@
+{% extends 'admin/ADMINHOMEINDEX.html' %}
+
+{% block body %}
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Seller</title>
+    <style>
+{#        body {#}
+{#            font-family: Arial, sans-serif;#}
+{#            background-color: #f4f4f4;#}
+{#            margin: 0;#}
+{#            display: flex;#}
+{#            justify-content: center;#}
+{#            align-items: center;#}
+{#            min-height: 100vh;#}
+{#        }#}
+{#        h1 {#}
+{#            color: #3498db; /* Customize heading color */#}
+{#            font-size: 2em;#}
+{#            margin-bottom: 20px;#}
+{#            text-align: center;#}
+{#        }#}
+        .form-container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px; /* Max width for larger screens */
+            margin: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input[type="text"], .form-group input[type="file"], .form-group select, .form-group input[type="password"] {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .form-group input[type="submit"] {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #5cb85c;
+            color: white;
+            cursor: pointer;
+            font-size: 1em;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .form-group input[type="submit"]:hover {
+            background-color: #4cae4c;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        td {
+            padding: 10px;
+            vertical-align: middle;
+        }
+        .table-hover tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+<div align="center">
+    <div class="form-container">
+        <h1>Add Seller</h1>
+        <form action="/addsellerCode" method="post" enctype="multipart/form-data" name="form1" id="form1">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="name">Seller Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter seller name" required/>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone:</label>
+                <input type="text" id="phone" name="phone" placeholder="Enter phone number" required/>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="text" id="email" name="email" placeholder="Enter email address" required/>
+                  <p id="message" style="{color:red;}"></p>
+            </div>
+            <div class="form-group">
+                <label for="photo">Photo:</label>
+                <input type="file" id="photo" name="file" accept="image/png, image/gif, image/jpeg"/>
+            </div>
+            <div class="form-group">
+                <label for="status">Status:</label>
+                <select id="status" name="status">
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="pass" placeholder="Enter password" required/>
+            </div>
+            <div class="form-group">
+                <input type="submit" name="Submit"  id="targetButton" value="Add Seller"/>
+            </div>
+        </form>
+    </div></div>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script type="text/javascript">
+
+
+    $("#email").keyup(function(){
+    var catid;
+    catid = $(this).val();
+
+$.ajax(
+    {
+        type:"GET",
+        url: "/checkemail",
+        data:{
+                 email: catid
+        },
+        success: function( data )
+        {
+        if (data.is_taken) {
+
+                    $( '#message' ).text(data.error_message);
+                    $('#targetButton').prop('disabled', true);
+                  }
+                  else
+                  {
+                  $( '#message' ).text("");
+                    $('#targetButton').prop('disabled', false);
+                  }
+
+        }
+     })
+});
+
+
+
+</script>
+</body>
+
+{% endblock %}

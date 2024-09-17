@@ -1,0 +1,147 @@
+{% extends 'admin/ADMINHOMEINDEX.html' %}
+
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Seller</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 20px;
+        }
+        h1 {
+            color: #3498db; /* Customize heading color */
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        .form-container {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-container label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .form-container input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: calc(100% - 120px);
+            margin-right: 10px;
+        }
+        .form-container input[type="submit"] {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #5cb85c;
+            color: white;
+            cursor: pointer;
+        }
+        .form-container input[type="submit"]:hover {
+            background-color: #4cae4c;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        table, th, td {
+            border: 1px solid #dddddd;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #3498db;
+            color: #ffffff;
+        }
+        td img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+        }
+        td a {
+            text-decoration: none;
+            color: #3498db;
+            padding: 5px;
+        }
+        td a:hover {
+            text-decoration: underline;
+        }
+        .actions a {
+            display: block;
+            margin: 5px 0;
+        }
+        .add-new {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .add-new a {
+            text-decoration: none;
+            padding: 10px 20px;
+            background-color: #5cb85c;
+            color: white;
+            border-radius: 4px;
+        }
+        .add-new a:hover {
+            background-color: #4cae4c;
+        }
+    </style>
+</head>
+<body>
+    <h1>Manage Seller</h1>
+    <div class="form-container">
+        <form id="form1" name="form1" method="post" action="sellerSearch">
+            {% csrf_token %}
+            <label for="name-search">Name:
+                <input type="text" id="name-search" name="textfield" placeholder="Enter name to search"/>
+                <input type="submit" name="Submit" value="Search"/>
+            </label>
+        </form>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Seller</th>
+                <th>Photo</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in val %}
+            <tr>
+                <td>{{ i.name }}</td>
+                <td><img src="../media/{{ i.photo }}" alt="{{ i.name }}'s photo"></td>
+                <td>{{ i.phone }}</td>
+                <td>{{ i.email }}</td>
+                <td>{{ i.status }}</td>
+                <td class="actions">
+                    <a href="/EditSeller/{{ i.id }}#get-started" class="btn btn-info">Edit</a>
+                    <a href="/deleteSeller/{{ i.id }}" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="add-new">
+        <a href="/addSeller#get-started">Add New</a>
+    </div>
+</body>
+</html>
+{% endblock %}

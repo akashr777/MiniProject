@@ -1,0 +1,44 @@
+{% extends 'homeindex1.html' %}
+{% block body %}
+    <div id="footer">
+<form action="/userProfilecode" method="post" enctype="multipart/form-data" name="form1" id="form1">
+  <table class="table table-hover">
+       <tr> <td><h>UPDATE PROFILE</h></td></tr>
+      <tr>
+          <td colspan="2">
+              <div align="center">
+              <img src="{{ i.photo.url }}" width="100px" height="100px"/>
+</div>
+          </td>
+      </tr>
+    <tr>
+      <td width="88">Name </td>
+      <td width="157"><label>
+        <input type="text" name="name" value="{{ i.name }}" class="form-control" />
+      </label></td>
+    </tr>
+    <tr>
+      <td>Phone</td>
+      <td><label>
+        <input type="text" name="phone" value="{{ i.phone }}"  class="form-control"/>
+      </label></td>
+    </tr>
+    <tr>
+      <td>Photo</td>
+      <td><label>
+        <input type="file" name="file"  class="form-control" />
+      </label></td>
+    </tr>
+
+    <tr>
+      <td colspan="2">
+        <div align="center">
+          <input type="submit" name="Update" value="Update" class="btn btn-primary" />
+          </div>
+
+      </td>
+    </tr>
+  </table>
+</form>
+    </div>
+{% endblock %}

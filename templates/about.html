@@ -1,0 +1,148 @@
+{% extends 'homeindex1.html' %}
+{% block body %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - BuildMate</title>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .about-section {
+            padding: 60px 20px;
+    background: linear-gradient(135deg, #0a53be, #f1faf2);
+            color: white;
+            border-radius: 8px;
+            margin: 20px auto;
+            max-width: 1000px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            font-family: "Poppins", sans-serif;
+            font-weight: 600;
+
+        }
+
+        .about-section h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .about-section p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .feature-item {
+            flex: 1 1 300px;
+            background: #fff;
+            color: #333;
+            border-radius: 8px;
+            padding: 30px;
+            margin: 10px;
+            text-align: center;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-item i {
+            font-size: 3rem;
+            color: #0a53be;
+;
+            margin-bottom: 15px;
+        }
+
+        .feature-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .feature-item p {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .about-section h1 {
+                font-size: 2rem;
+            }
+
+            .about-section p {
+                font-size: 1.1rem;
+            }
+
+            .feature-item {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .about-section h1 {
+                font-size: 1.75rem;
+            }
+
+            .about-section p {
+                font-size: 1rem;
+            }
+
+            .feature-item h3 {
+                font-size: 1.25rem;
+            }
+
+            .feature-item p {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="about-section">
+            <h1>About Us</h1>
+            <p>Welcome to <strong>BuildMate</strong>, your one-stop solution for sourcing and distributing high-quality construction materials. As an innovative platform, BuildMate is designed to streamline the procurement process for construction businesses, contractors, and individuals. We specialize in providing a wide range of materials, including plywood, multiwood, gypsum, and other essential products required for building and renovation projects.</p>
+            <p>At the heart of our platform is a commitment to convenience, quality, and reliability. By partnering with trusted suppliers like CKM General Trading Koyilandi, we ensure that our customers receive the best materials available, delivered right to their doorsteps.</p>
+            <p>Whether you are managing a large construction project or looking to make improvements to your home, BuildMate is here to support you every step of the way, offering high-quality products, competitive prices, and outstanding customer service.</p>
+        </div>
+
+        <div class="features">
+            <div class="feature-item">
+                <i class="fas fa-hard-hat"></i>
+                <h3>Quality Materials</h3>
+                <p>We source only the finest materials from trusted suppliers, ensuring the durability and longevity of your construction projects.</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-shipping-fast"></i>
+                <h3>Fast Delivery</h3>
+                <p>Our efficient logistics network ensures that your materials are delivered on time, every time, right to your doorstep.</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-recycle"></i>
+                <h3>Eco-Friendly</h3>
+                <p>We are committed to sustainability, offering eco-friendly products and practices to minimize our environmental impact.</p>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+{% endblock %}
+

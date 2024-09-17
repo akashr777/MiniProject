@@ -1,0 +1,102 @@
+<html>
+<head>
+    <style>
+        .services-section {
+            background-color: #f4f4f4;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .services-heading {
+            font-size: 36px;
+            color: #0a53be;
+            margin-bottom: 40px;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .services-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+
+        }
+
+      .service-card {
+    background: linear-gradient(135deg, #0a53be, #f1faf2);
+    color: #fff;
+    border-radius: 15px;
+    padding: 25px;
+    max-width: 300px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .service-icon img {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 20px;
+        }
+
+        .service-title {
+            font-size: 24px;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .service-description {
+            font-size: 16px;
+            color: white;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .services-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .service-card {
+                max-width: 100%;
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="services-section">
+        <h2 class="services-heading">Our Services</h2>
+        <div class="services-container">
+            <div class="service-card">
+                <div class="service-icon">
+                    <img src="../static/assets/img/icon1.png" alt="Construction Materials Icon">
+                </div>
+                <h3 class="service-title">Construction Materials</h3>
+                <p class="service-description">High-quality materials for all your construction needs.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <img src="../static/assets/img/icon2.png" alt="Custom Orders Icon">
+                </div>
+                <h3 class="service-title">Custom Orders</h3>
+                <p class="service-description">Tailored solutions to match your project specifications.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <img src="../static/assets/img/icon3.png" alt="On-Time Delivery Icon">
+                </div>
+                <h3 class="service-title">On-Time Delivery</h3>
+                <p class="service-description">Efficient logistics to ensure timely delivery of materials.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

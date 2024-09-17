@@ -1,0 +1,53 @@
+{% extends 'Seller/Sellerhome1.html' %}
+{% block body %}
+<form action="/AddProductpost" method="post" enctype="multipart/form-data" name="form1" id="form1">
+  <table width="200" border="1" class="table table-hover">
+   <tr> <td><h>ADD PRODUCT</h></td></tr>
+    <tr>
+      <td>Name</td>
+      <td>
+        <input type="text" name="name" class="form-control" value="{{ n }}" required pattern="[a-zA-Z 0-9.]+"/>
+      </td>
+    </tr>
+    <tr>
+      <td>Image</td>
+      <td>
+        <input type="file" name="file"  class="form-control" required  accept="image/png, image/gif, image/jpeg" />
+      </td>
+    </tr>
+    <tr>
+      <td>Stock</td>
+      <td> <input type="text" name="stock" class="form-control" value="{{ s }}" required pattern="[0-9]+"/></td>
+    </tr>
+    <tr>
+      <td>Price</td>
+      <td> <input type="text" name="price" class="form-control" value="{{ p }}" required pattern="[0-9]+"/></td>
+    </tr>
+    <tr>
+      <td>Category</td>
+      <td>
+        <select name="select"  class="form-control">
+            {% for i in val %}
+                <option value="{{ i.id }}">{{ i.category }}</option>
+            {% endfor %}
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <div align="center">
+          <input type="submit" name="Submit" value="Add" />
+          </div>
+      </td>  </tr>
+        {% if f == "0" %}
+  <tr>
+        <td colspan="2">
+        <div align="center">
+          <p>Product exists</p>
+          </div>
+      </td>
+   </tr>
+  {% endif %}
+  </table>
+</form>
+{% endblock %}

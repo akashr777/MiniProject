@@ -1,0 +1,45 @@
+{% extends 'Seller/Sellerhome1.html' %}
+{% block body %}
+<form action="/UpdateProductpost" method="post" enctype="multipart/form-data" name="form1" id="form1">
+  <table width="200" border="1" class="table table-hover">
+   <tr> <td><h>UPDATE PROFILE</h></td></tr>
+    <tr>
+      <td>Name</td>
+      <td>
+        <input type="text" name="name" class="form-control" value="{{ val.name }}"/>
+      </td>
+    </tr>
+    <tr>
+      <td>Image</td>
+      <td>
+        <input type="file" name="file"  class="form-control"/>
+      </td>
+    </tr>
+    <tr>
+      <td>Stock</td>
+      <td> <input type="text" name="stock" class="form-control" {{ val.stock }}/></td>
+    </tr>
+    <tr>
+      <td>Price</td>
+      <td> <input type="text" name="price" class="form-control" {{ val.price }}/></td>
+    </tr>
+    <tr>
+      <td>Category</td>
+      <td>
+        <select name="select"  class="form-control">
+            {% for i in cat %}
+                <option value="{{ i.id }}" {% if i.CATEGORY.id == i.id %} selected {% endif %}>{{ i.category }}</option>
+            {% endfor %}
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <div align="center">
+          <input type="submit" name="Submit" value="Add" />
+          </div>
+      </td>
+    </tr>
+  </table>
+</form>
+{% endblock %}

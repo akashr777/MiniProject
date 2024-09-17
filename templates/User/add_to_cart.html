@@ -1,0 +1,53 @@
+{% extends 'homeindex1.html' %}
+{% block body %}
+{#    <div>#}
+{#    <form method="post" action="/ProductList_post">#}
+{#     <table class="table table-hover">#}
+{#    <tr>#}
+{#        <td>#}
+{##}
+{#        </td><td>#}
+{#            <input type="text" name="s" class="form-control" placeholder="Search by Name" value="{{ s }}">#}
+{#        </td><td>#}
+{#           <select name="cat" class="form-control">#}
+{#               <option value="0">ALL CATEGORY</option>#}
+{#               {% for i in cat %}#}
+{#                   <option value="{{ i.id }}" {% if cc == i.id %} selected {% endif %}>{{ i.category }}</option>#}
+{#               {% endfor %}#}
+{#           </select>#}
+{#        </td>#}
+{#        <td>#}
+{#            <input type="submit" value="Search" class="btn btn-primary">#}
+{#        </td>#}
+{#    </tr>#}
+{#    </table>#}
+{#    </form>#}
+{#    <br/>#}
+{#    </div>#}
+
+ <div class="row">
+{% for i in val %}
+<form method="post" action="/add_to_cart_post">
+     <div class="col-sm-3"  style="{padding-bottom: 15px;}">
+         <div class="card">
+     <p><img src="{{ i.photo.url }}" width="100px" height="100px"></p>
+                    <p>{{ i.name }}</p>
+                    <p> Stock    : {{ i.stock }}</p>
+                    <p> Price    : {{ i.price }}</p>
+                    <p> Category :{{ i.CATEGORY.category }}</p>
+             <p>Quantity <input type="text" name="qty" required pattern="[0-9]+"></p>
+             <div>
+             <input type="submit" value="Buy now">
+                 </div>
+
+
+                </div>
+
+     </div>
+
+</form>
+
+{% endfor %}
+ </div>
+
+{% endblock %}

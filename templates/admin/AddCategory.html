@@ -1,0 +1,90 @@
+{% extends 'admin/ADMINHOMEINDEX.html' %}
+{% block body %}
+<body>
+  <div class="container mt-5">
+    <div class="card shadow-lg">
+      <div class="card-header bg-gradient-primary text-white text-center">
+        <h3><i class="bi bi-folder-plus"></i> ADD CATEGORY</h3>
+      </div>
+      <div class="card-body">
+        <form id="form1" name="form1" method="post" action="/Addcategorypost#get-started">
+          <div class="form-group mb-4">
+            <label for="categoryName" class="form-label"><i class="bi bi-pencil"></i> Category Name</label>
+            <input type="text" name="name" id="categoryName" class="form-control shadow-sm" placeholder="Enter category name" value="{{ c }}" required />
+          </div>
+          <div class="form-group mb-4">
+            <label for="categoryDetails" class="form-label"><i class="bi bi-card-text"></i> Details</label>
+            <textarea name="details" id="categoryDetails" class="form-control shadow-sm" rows="3" placeholder="Enter category details"  required>{{ d }}</textarea>
+          </div>
+          <div class="text-center">
+            <button type="submit" class="btn btn-success btn-lg shadow"><i class="bi bi-check-circle"></i> Add Category</button>
+          </div>
+            {% if s == "0" %}
+            <div class="text-center">
+           <p>Category Existing</p>
+          </div>
+            {% endif %}
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    /* General Styling */
+    body {
+      background: #f1f5f9;
+    }
+
+    .card {
+      max-width: 550px;
+      margin: 0 auto;
+      border-radius: 12px;
+      border: none;
+      overflow: hidden;
+    }
+
+    .card-header {
+      font-size: 1.6rem;
+      font-weight: 600;
+      padding: 20px;
+      background: linear-gradient(135deg, #0062cc, #28a745);
+      border-bottom: none;
+    }
+
+    .form-label {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #495057;
+    }
+
+    .form-control {
+      border-radius: 10px;
+      box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.05);
+      transition: border-color 0.2s ease-in-out;
+    }
+
+    .form-control:focus {
+      border-color: #0062cc;
+      box-shadow: 0px 6px 12px rgba(0, 98, 204, 0.3);
+    }
+
+    .btn-success {
+      background-color: #28a745;
+      border: none;
+      padding: 10px 30px;
+      font-size: 1.2rem;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .btn-success:hover {
+      background-color: #218838;
+      box-shadow: 0px 8px 15px rgba(33, 136, 56, 0.3);
+    }
+
+    .bi {
+      margin-right: 8px;
+    }
+  </style>
+</body>
+{% endblock %}

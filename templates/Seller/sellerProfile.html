@@ -1,0 +1,47 @@
+{% extends 'Seller/Sellerhome1.html' %}
+{% block body %}
+<div class="container mt-100">
+    <div class="row justify-content-center">&nbsp;
+        <div class="col-md-100">
+            <!-- Form Start -->
+            <form action="sellerProfilecode" method="post" enctype="multipart/form-data" name="form1" id="form1">
+                <div class="card shadow">
+                    <div class="card-header text-center bg-primary text-white">
+                        <h3>Update Profile</h3>
+                    </div>
+                    <div class="card-body">
+                        <!-- Image Display -->
+                        <div class="form-group text-center mb-100">
+                            <img src="{{ i.photo.url }}" class="rounded-circle" width="150" height="150" alt="Profile Photo" />
+                        </div>
+
+                        <!-- Name Field -->
+                        <div class="form-group mb-100">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" name="name" id="name" value="{{ i.name }}" required>
+                        </div>
+
+                        <!-- Phone Field -->
+                        <div class="form-group mb-100">
+                            <label for="phone" class="form-label">Phone</label>
+                            <input type="text" class="form-control" name="phone" id="phone" value="{{ i.phone }}" required>
+                        </div>
+
+                        <!-- Photo Upload -->
+                        <div class="form-group mb-3">
+                            <label for="file" class="form-label">Upload New Photo</label>
+                            <input type="file" class="form-control" name="file" id="file">
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-success">Update</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <!-- Form End -->
+        </div>
+    </div>
+</div>
+{% endblock %}
