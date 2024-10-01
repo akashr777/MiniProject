@@ -35,8 +35,11 @@ class product_table(models.Model):
     CATEGORY = models.ForeignKey(category_table, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     stock=models.IntegerField(max_length=20)
+    unit=models.CharField(max_length=50)
     price=models.IntegerField(max_length=20)
     photo = models.FileField()
+    brand=models.CharField(max_length=50)
+    description=models.CharField(max_length=500)
 
 class order_table(models.Model):
     USER = models.ForeignKey(user_table, on_delete=models.CASCADE)
@@ -48,6 +51,16 @@ class order_details_table(models.Model):
     ORDER = models.ForeignKey(order_table, on_delete=models.CASCADE)
     PRODUCT = models.ForeignKey(product_table, on_delete=models.CASCADE)
     Quantity = models.CharField(max_length=100)
-    price=models.IntegerField(max_length=20)
+    price=models.IntegerField(max_length=200)
+
+
+
+class offer_table(models.Model):
+    PRODUCT = models.ForeignKey(product_table, on_delete=models.CASCADE)
+    title = models.CharField(max_length=100)
+    description = models.CharField(max_length=100)
+    Percentage=models.IntegerField(max_length=20)
+    From_date=models.DateField()
+    To_date=models.DateField()
 
 

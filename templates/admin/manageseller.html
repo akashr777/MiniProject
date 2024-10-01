@@ -9,108 +9,169 @@
     <title>Manage Seller</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f9f9f9;
             margin: 20px;
+            color: #333;
         }
+
         h1 {
-            color: #3498db; /* Customize heading color */
-            font-size: 2em;
-            margin-bottom: 20px;
+            color: #2c3e50; /* Custom heading color */
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 30px;
         }
+
         .form-container {
-            margin-bottom: 20px;
-            padding: 10px;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            padding: 15px;
             background-color: #ffffff;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
+
         .form-container label {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-right: 10px;
         }
+
         .form-container input[type="text"] {
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 4px;
-            width: calc(100% - 120px);
+            width: 300px;
             margin-right: 10px;
         }
+
         .form-container input[type="submit"] {
             padding: 10px 20px;
             border: none;
             border-radius: 4px;
-            background-color: #5cb85c;
+            background-color: #3498db;
             color: white;
+            font-size: 1em;
             cursor: pointer;
+            transition: background-color 0.3s ease;
         }
+
         .form-container input[type="submit"]:hover {
-            background-color: #4cae4c;
+            background-color: #2980b9;
         }
+
         table {
             width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
             border-collapse: collapse;
             background-color: #ffffff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
             overflow: hidden;
         }
-        table, th, td {
-            border: 1px solid #dddddd;
-        }
+
         th, td {
-            padding: 12px;
+            padding: 15px;
             text-align: left;
+            border-bottom: 1px solid #dddddd;
         }
+
         th {
             background-color: #3498db;
             color: #ffffff;
+            font-size: 1.2em;
+            text-transform: uppercase;
         }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
         td img {
             border-radius: 50%;
-            width: 100px;
-            height: 100px;
+            width: 80px;
+            height: 80px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
+
         td a {
             text-decoration: none;
             color: #3498db;
             padding: 5px;
         }
+
         td a:hover {
             text-decoration: underline;
         }
+
         .actions a {
             display: block;
             margin: 5px 0;
         }
+
         .add-new {
-            margin-top: 20px;
             text-align: center;
+            margin-top: 30px;
         }
+
         .add-new a {
             text-decoration: none;
-            padding: 10px 20px;
+            padding: 12px 20px;
             background-color: #5cb85c;
             color: white;
             border-radius: 4px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
         }
+
         .add-new a:hover {
             background-color: #4cae4c;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .form-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .form-container input[type="text"],
+            .form-container input[type="submit"] {
+                width: 100%;
+                max-width: 400px;
+                margin: 5px 0;
+            }
+
+            table {
+                width: 100%;
+                font-size: 0.9em;
+            }
+
+            td img {
+                width: 60px;
+                height: 60px;
+            }
         }
     </style>
 </head>
 <body>
     <h1>Manage Seller</h1>
+
     <div class="form-container">
-        <form id="form1" name="form1" method="post" action="sellerSearch">
+        <form id="form1" name="form1" method="post" action="sellerSearch#get-started">
             {% csrf_token %}
-            <label for="name-search">Name:
-                <input type="text" id="name-search" name="textfield" placeholder="Enter name to search"/>
-                <input type="submit" name="Submit" value="Search"/>
-            </label>
+            <label for="name-search">Name:</label>
+            <input type="text" id="name-search" name="textfield" placeholder="Enter name to search"/>
+            <input type="submit" name="Submit" value="Search"/>
         </form>
     </div>
+
     <table>
         <thead>
             <tr>
@@ -131,8 +192,8 @@
                 <td>{{ i.email }}</td>
                 <td>{{ i.status }}</td>
                 <td class="actions">
-                    <a href="/EditSeller/{{ i.id }}#get-started" class="btn btn-info">Edit</a>
-                    <a href="/deleteSeller/{{ i.id }}" class="btn btn-danger">Delete</a>
+                    <a href="/EditSeller/{{ i.id }}#get-started" class="btn btn-info" style="text-decoration: none">Edit</a>
+                    <a href="/deleteSeller/{{ i.id }}" class="btn btn-danger" style="text-decoration: none">Delete</a>
                 </td>
             </tr>
             {% endfor %}
@@ -144,4 +205,5 @@
     </div>
 </body>
 </html>
+
 {% endblock %}

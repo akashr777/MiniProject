@@ -222,11 +222,13 @@ h6 {
 # Global Header
 --------------------------------------------------------------*/
 .header {
-  --background-color: rgba(255, 255, 255, 0);
+  /*--background-color: rgba(255, 255, 255, 0);*/
   --default-color: #ffffff;
   --heading-color: #ffffff;
   color: var(--default-color);
-  background-color: var(--background-color);
+  /*background-color: var(--background-color);*/
+    /*--background-color: #1e4356;*/
+
   padding: 15px 0;
   transition: all 0.5s;
   z-index: 997;
@@ -249,10 +251,10 @@ h6 {
 }
 
 /* Global Header on Scroll
-------------------------------*/
-.scrolled .header {
-  --background-color: #1e4356;
-}
+/*------------------------------*!*/
+/*.scrolled .header {*/
+  /*--background-color: #1e4356;*/
+/*}*/
 
 /*--------------------------------------------------------------
 # Navigation Menu
@@ -857,7 +859,7 @@ section,
   top: 0;
   width: 130%;
   height: 95%;
-  background: linear-gradient(to right, color-mix(in srgb, var(--background-color), transparent 90%), var(--background-color)), url("../img/hero-bg.jpg") center top no-repeat;
+  /*background: linear-gradient(to right, color-mix(in srgb, var(--background-color), transparent 90%), var(--background-color)), url("../img/hero-bg.jpg") center top no-repeat;*/
   background-size: cover;
   z-index: 0;
   border-radius: 0 0 50% 50%;

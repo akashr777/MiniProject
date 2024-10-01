@@ -1,0 +1,47 @@
+{% extends 'Seller/s1.html' %}
+{% block body %}
+
+<h2>Manage Products</h2>
+<table width="100%" border="1" class="table table-hover">
+  <thead>
+    <tr>
+      <th>Product Name</th>
+      <th>Category</th>
+      <th>Stock</th>
+      <th>Price</th>
+      <th>Offers</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for product in products %}
+    <tr>
+      <td>{{ product.name }}</td>
+      <td>{{ product.CATEGORY.category }}</td>
+      <td>{{ product.stock }}</td>
+      <td>{{ product.price }}</td>
+      <td>
+        {% for offer in offers %}
+          {% if offer.PRODUCT.id == product.id %}
+            <p>Promotion: {{ offer.PROMOTION.promotion_type }} |
+               Discount: {{ offer.Percentage }}% |
+               Valid: {{ offer.From_date }} to {{ offer.To_date }}
+            </p>
+          {% endif %}
+        {% empty %}
+          <p>No offers available for this product.</p>
+        {% endfor %}
+      </td>
+      <td>
+        <a href="/editProduct/{{ product.id }}" class="btn btn-primary">Edit</a>
+        <a href="/deleteProduct/{{ product.id }}" class="btn btn-danger">Delete</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+     <div class="add-new">
+        <a href="/add_offer1#get-started">Add New</a>
+    </div>
+
+{% endblock %}

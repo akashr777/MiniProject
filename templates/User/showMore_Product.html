@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>View Product</title>
+    <style>
+        .product-header {
+            background-color: #343a40;
+            color: white;
+            padding: 10px;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .product-specifications {
+            margin-top: 20px;
+        }
+
+        .btn-add-to-cart {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .btn-add-to-cart:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+
+
+
+
+
+
+<body>
+
+    <div class="container mt-5">
+       <div class="container mt-5">
+    <div class="product-header text-center"  style="background-color: #3498db;">
+        <h2 class="font-weight-bold">{{ data.name }}</h2>
+    </div>
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card border-0">
+                <img src="{{ data.photo.url }}" alt="Product Image" class="card-img-top img-fluid">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm p-3 mb-5 bg-white rounded">
+<h4 class="card-title">
+                    <p class="text-muted mb-1">MRP: Rs.{{ data.price }}</p>
+        <span id="unit" style="font-size: 1rem;font-weight: 500">{{ data.unit }}</span></span>
+
+</h4>
+                        <h4 class="text-info" style="font-size: 17px">Stock: <span id="stock">{{ data.stock }}</span></h4>
+{#                        <p>Discounted Price: {{ discounted_price|floatformat:2 }}</p>#}
+                        <p class="text-info">Description: <span id="description">{{ data.description }}</span></p>
+
+                        {% if data.PRODUCT.stock == 0 %}
+                            <strong style="color: red">Out Of Stocks</strong>
+                        {% else %}
+                            <a class="btn  btn-lg w-100 mt-3" href="/add_cart2/{{ data.id }}" style="background-color: green;color:white">Add To Cart</a>
+                        {% endif %}
+                    </div>
+
+
+
+
+
+
+
+
+{#                <div class="card-body">#}
+{#                    <p class="text-muted mb-1">MRP:<s> Rs.{{ data.price }}</s></p>#}
+{#                    <h4 class="card-title">Price: $<span id="product-price">{{ data.price }}</span></h4>#}
+{#                    <h4 class="text-success">Sale Price: $<span id="sale-price">80</span></h4>#}
+{#                    <h4 class="text-danger">Offer Percentage: <span id="offer-percentage">20%</span></h4>#}
+{#                    <h4 class="text-info">Stock: <span id="stock">{{ data.stock }}</span></h4>#}
+{#                    <h4 class="text-info">Unit: <span id="stock">{{ data.unit }}</span></h4>#}
+{#                    <p class="text-info">Description: <span id="stock">{{ data.description }}</span></p>#}
+{##}
+{#                    <div class="form-group mt-3">#}
+{#                        <label for="quantity" class="font-weight-bold">Quantity:</label>#}
+{#                        <input type="number" id="quantity" class="form-control" value="1" min="1" max="50">#}
+{#                    </div>#}
+{##}
+{#                    {% if  data.stock  == 0 %}#}
+{#                        <strong style="color: red">Out Of Stocks</strong>#}
+{#                    {% else %}#}
+{#                    <a class="btn btn-primary btn-lg w-100 mt-3" href="/add_cart/{{ data.id }}">Add To Cart</a>#}
+{#                    {% endif %}#}
+{#                </div>#}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

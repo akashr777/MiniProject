@@ -1,41 +1,45 @@
-{% extends 'Seller/Sellerhome1.html' %}
+{% extends 'Seller/s1.html' %}
 {% block body %}
-<div class="container mt-100">
-    <div class="row justify-content-center">&nbsp;
-        <div class="col-md-100">
+    <div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
             <!-- Form Start -->
             <form action="sellerProfilecode" method="post" enctype="multipart/form-data" name="form1" id="form1">
-                <div class="card shadow">
-                    <div class="card-header text-center bg-primary text-white">
-                        <h3>Update Profile</h3>
+                <div class="card shadow-sm border-0 rounded">
+                    <!-- Card Header -->
+                    <div class="card-header text-center  text-white rounded-top py-3" style="background-color: #3498db">
+                        <h4 class="fw-semibold" style="color: white">Update Profile</h4>
                     </div>
-                    <div class="card-body">
+
+                    <!-- Card Body -->
+                    <div class="card-body p-3">
                         <!-- Image Display -->
-                        <div class="form-group text-center mb-100">
-                            <img src="{{ i.photo.url }}" class="rounded-circle" width="150" height="150" alt="Profile Photo" />
+                        <div class="text-center mb-3">
+                            <img src="{{ i.photo.url }}" class="rounded-circle border border-2 shadow-sm" style="width:90px; height:90px;" alt="Profile Photo" />
                         </div>
 
                         <!-- Name Field -->
-                        <div class="form-group mb-100">
-                            <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control" name="name" id="name" value="{{ i.name }}" required>
+                        <div class="form-group mb-3">
+                            <label for="name" class="form-label fw-bold">Name</label>
+                            <input type="text" class="form-control form-control-sm rounded" name="name" id="name" value="{{ i.name }}" required>
                         </div>
 
                         <!-- Phone Field -->
-                        <div class="form-group mb-100">
-                            <label for="phone" class="form-label">Phone</label>
-                            <input type="text" class="form-control" name="phone" id="phone" value="{{ i.phone }}" required>
+                        <div class="form-group mb-3">
+                            <label for="phone" class="form-label fw-bold">Phone</label>
+                            <input type="text" class="form-control form-control-sm rounded" name="phone" id="phone" value="{{ i.phone }}" required
+                            pattern="^\d{10}$" title="Please enter a valid 10-digit phone number">
                         </div>
 
                         <!-- Photo Upload -->
-                        <div class="form-group mb-3">
-                            <label for="file" class="form-label">Upload New Photo</label>
-                            <input type="file" class="form-control" name="file" id="file">
+                        <div class="form-group mb-4">
+                            <label for="file" class="form-label fw-bold">Upload New Photo</label>
+                            <input type="file" class="form-control form-control-sm rounded" name="file" id="file">
                         </div>
 
                         <!-- Submit Button -->
-                        <div class="text-center mt-4">
-                            <button type="submit" class="btn btn-success">Update</button>
+                        <div class="text-center mt-3">
+                            <button type="submit" class="btn  btn-sm rounded-pill px-4" style="background-color: #3498db;color: white">Update</button>
                         </div>
                     </div>
                 </div>
@@ -44,4 +48,5 @@
         </div>
     </div>
 </div>
+
 {% endblock %}

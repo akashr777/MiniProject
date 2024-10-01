@@ -1,45 +1,122 @@
-{% extends 'Seller/Sellerhome1.html' %}
+{% extends 'Seller/s1.html' %}
+
+<!-- Additional Styling -->
+<style>
+    /* Card Styling */
+    .card {
+        border-radius: 15px;
+    }
+
+    .card-header {
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        background-color: #343a40;
+    }
+
+    .form-control, .form-control-file {
+        border-radius: 10px;
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Button Custom Style */
+    .btn-custom {
+        background-color: #17a2b8;
+        color: white;
+        border-radius: 30px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+    }
+
+    .btn-custom:hover {
+        background-color: #138496;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Input Focus Effect */
+    .form-control:focus {
+        border-color: #17a2b8;
+        box-shadow: 0px 0px 8px rgba(23, 162, 184, 0.4);
+    }
+
+    .form-group label {
+        font-weight: 600;
+        color: #343a40;
+    }
+</style>
+
 {% block body %}
-<form action="/UpdateProductpost" method="post" enctype="multipart/form-data" name="form1" id="form1">
-  <table width="200" border="1" class="table table-hover">
-   <tr> <td><h>UPDATE PROFILE</h></td></tr>
-    <tr>
-      <td>Name</td>
-      <td>
-        <input type="text" name="name" class="form-control" value="{{ val.name }}"/>
-      </td>
-    </tr>
-    <tr>
-      <td>Image</td>
-      <td>
-        <input type="file" name="file"  class="form-control"/>
-      </td>
-    </tr>
-    <tr>
-      <td>Stock</td>
-      <td> <input type="text" name="stock" class="form-control" {{ val.stock }}/></td>
-    </tr>
-    <tr>
-      <td>Price</td>
-      <td> <input type="text" name="price" class="form-control" {{ val.price }}/></td>
-    </tr>
-    <tr>
-      <td>Category</td>
-      <td>
-        <select name="select"  class="form-control">
-            {% for i in cat %}
-                <option value="{{ i.id }}" {% if i.CATEGORY.id == i.id %} selected {% endif %}>{{ i.category }}</option>
-            {% endfor %}
-        </select>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2">
-        <div align="center">
-          <input type="submit" name="Submit" value="Add" />
-          </div>
-      </td>
-    </tr>
-  </table>
-</form>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg">
+                <div class="card-header  text-white text-center" style="background-color: #3498db">
+                    <h4 style="color: white;font-weight: 600">Update Product</h4>
+                </div>
+                <div class="card-body">
+                    <form action="/UpdateProductpost" method="post" enctype="multipart/form-data" id="form1">
+                        <!-- Product Name -->
+                        <div class="form-group mb-3">
+                            <label for="name">Product Name</label>
+                            <input type="text" name="name" id="name" class="form-control" value="{{ val.name }}" placeholder="Enter product name" required>
+                        </div>
+
+                        <!-- Product Brand -->
+                        <div class="form-group mb-3">
+                            <label for="brand">Brand</label>
+                            <input type="text" name="brand" id="brand" class="form-control" value="{{ val.brand }}" placeholder="Enter brand name" >
+                        </div>
+
+                        <!-- Product Image -->
+{#                        <div class="form-group mb-3">#}
+{#                            <label for="file">Image</label>#}
+{#                            <img src="{{ val.photo.url }}" width="300px" height="200px">#}
+{#                            <input type="file" name="file" id="file" class="form-control-file" >#}
+{#                        </div>#}
+
+                    <div class="form-group mb-3">
+    <label for="file">Image</label>
+    <!-- Displaying the image in full size -->
+    <div class="image-preview">
+        <img src="{{ val.photo.url }}" alt="Product Image" style="width: 50%; height: auto; max-width: 20%;" />
+    </div>
+    <input type="file" name="file" id="file" class="form-control-file">
+</div>
+                        <!-- Product Stock -->
+                        <div class="form-group mb-3">
+                            <label for="stock">Stock</label>
+                            <input type="number" name="stock" id="stock" class="form-control" value="{{ val.stock }}" placeholder="Enter stock quantity" required>
+                        </div>
+
+                        <!-- Product Price -->
+                        <div class="form-group mb-3">
+                            <label for="price">Price</label>
+                            <input type="number" name="price" id="price" class="form-control" value="{{ val.price }}" placeholder="Enter product price" step="0.01" required>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="price">Description</label>
+                            <input type="text" name="description" id="description" class="form-control" value="{{ val.description }}"  >
+                        </div>
+
+                        <!-- Product Category -->
+                        <div class="form-group mb-3">
+                            <label for="category">Category</label>
+                            <select name="select" id="category" class="form-control" required>
+                                {% for i in cat %}
+                                <option value="{{ i.id }}" {% if i.CATEGORY.id == i.id %} selected {% endif %}>{{ i.category }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="text-center">
+                            <button type="submit" class="btn  w-50" style="background-color: #3498db;color:white;">Update Product</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock %}

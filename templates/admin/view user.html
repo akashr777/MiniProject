@@ -9,63 +9,118 @@
     <title>View User</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 20px;
             background-color: #f4f4f4;
+            color: #333;
         }
-        table {
-            width: auto; /* Adjust width to fit content */
-            max-width: 100%; /* Ensure it doesn't exceed the container width */
-            border-collapse: collapse;
-            background-color: #ffffff;
-            margin: 20px 0;
-        }
-        table, th, td {
-            border: 1px solid #dddddd;
-        }
-        th, td {
-            padding: 10px;
-            text-align: left;
-            white-space: nowrap; /* Prevent text wrapping */
-        }
-        th {
-            background-color: #3498db; /* Custom color for heading */
-            color: #ffffff; /* Text color for better contrast */
-        }
-        img {
-            border-radius: 50%;
-        }
+
         h1 {
-            color: #3498db; /* Change this color to your preference */
-            font-size: 2em;
-            margin-bottom: 20px;
+            color: #2c3e50; /* Darker shade for contrast */
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 30px;
         }
+
         .form-container {
-            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
         }
+
+        .form-container label {
+            font-weight: bold;
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+
         .form-container input[type="text"] {
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 4px;
-            width: calc(100% - 120px);
-            display: inline-block;
+            width: 300px;
+            font-size: 1em;
+            margin-right: 10px;
         }
+
         .form-container input[type="submit"] {
             padding: 10px 20px;
             border: none;
             border-radius: 4px;
-            background-color: #5cb85c;
+            background-color: #3498db;
             color: white;
+            font-size: 1em;
             cursor: pointer;
+            transition: background-color 0.3s ease;
         }
+
         .form-container input[type="submit"]:hover {
-            background-color: #4cae4c;
+            background-color: #2980b9;
+        }
+
+        table {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            border-collapse: collapse;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for the table */
+            border-radius: 8px; /* Rounded corners */
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            white-space: nowrap;
+            border-bottom: 1px solid #dddddd;
+        }
+
+        th {
+            background-color: #3498db;
+            color: #ffffff;
+            font-size: 1.2em;
+            text-transform: uppercase;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1; /* Highlight row on hover */
+        }
+
+        img {
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for images */
+        }
+
+        /* Responsive design for smaller screens */
+        @media (max-width: 768px) {
+            .form-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .form-container input[type="text"],
+            .form-container input[type="submit"] {
+                width: 100%;
+                max-width: 400px;
+                margin: 5px 0;
+            }
+
+            table {
+                width: 100%;
+                font-size: 0.9em;
+            }
         }
     </style>
 </head>
 <body>
     <h1>View User</h1>
-    <form id="form1" name="form1" method="post" action="/viewuserSearch" class="form-container">
+
+    <form id="form1" name="form1" method="post" action="/viewuserSearch#get-started" class="form-container">
         {% csrf_token %}
         <label for="name-search">Name:</label>
         <input type="text" id="name-search" name="textfield" placeholder="Enter name to search"/>
@@ -85,7 +140,7 @@
             {% for i in val %}
             <tr>
                 <td>{{ i.name }}</td>
-                <td><img src="{{ i.photo.url }}" alt="{{ i.name }}'s photo" width="100" height="100"></td>
+                <td><img src="{{ i.photo.url }}" alt="{{ i.name }}'s photo" width="80" height="80"></td>
                 <td>{{ i.phone }}</td>
                 <td>{{ i.email }}</td>
             </tr>
@@ -94,4 +149,5 @@
     </table>
 </body>
 </html>
+
 {% endblock %}

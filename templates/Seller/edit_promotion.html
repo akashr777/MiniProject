@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Offer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+        }
+        h2 {
+            text-align: center;
+            color: #343a40;
+        }
+        form {
+            max-width: 400px;
+            margin: auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            color: #495057;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input:focus, textarea:focus {
+            border-color: #80bdff;
+            outline: none;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .error {
+            color: red;
+            margin-top: 10px;
+            display: none; /* Initially hidden */
+        }
+    </style>
+</head>
+<body>
+
+<h2>Add Offer</h2>
+<form id="offerForm" method="post" action="/editproduct_post">
+    <label for="title">Offer Title:</label>
+
+    <input type="hidden" id="id" name="id" value="{{ ob.id }}">
+    <input type="text" id="title" name="title" value="{{ ob.title }}">
+
+    <label for="description">Description:</label>
+<textarea id="description" name="description" rows="4">{{ ob.description }}</textarea>
+
+
+    <label for="percentage">Percentage:</label>
+<input type="number" id="percentage" value="{{ ob.Percentage }}" name="percentage" min="0" max="100" >
+<div class="error" id="percentageError" style="color: red; display: none;">Percentage must be between 0 and 100.</div>
+
+    <label for="fromdate">From Date:</label>
+    <input type="date" id="fromdate" value="{{ ob.From_date|date:'Y-m-d' }}" name="fromdate" required>
+
+    <label for="todate">To Date:</label>
+    <input type="date" id="todate" value="{{ ob.To_date|date:'Y-m-d' }}" name="todate" required>
+
+    <div class="error" id="dateError">To Date cannot be less than From Date.</div>
+
+    <button type="submit">Edit Offer</button>
+</form>
+
+<script>
+    function validateDates() {
+        const fromDate = new Date(document.getElementById('fromdate').value);
+        const toDate = new Date(document.getElementById('todate').value);
+        const errorElement = document.getElementById('dateError');
+
+        if (toDate < fromDate) {
+            errorElement.style.display = 'block'; // Show error message
+        } else {
+            errorElement.style.display = 'none'; // Hide error message if valid
+        }
+    }
+
+    function validatePercentage() {
+        const percentageInput = document.getElementById('percentage');
+        const percentageError = document.getElementById('percentageError');
+        const percentageValue = percentageInput.value;
+
+        if (percentageValue < 0 || percentageValue > 100) {
+            percentageError.style.display = 'block'; // Show error message
+        } else {
+            percentageError.style.display = 'none'; // Hide error message if valid
+        }
+    }
+
+    document.getElementById('offerForm').addEventListener('submit', function(event) {
+        const fromDate = new Date(document.getElementById('fromdate').value);
+        const toDate = new Date(document.getElementById('todate').value);
+        const dateErrorElement = document.getElementById('dateError');
+        const percentageValue = document.getElementById('percentage').value;
+
+        isValid = true;
+
+        if (toDate < fromDate) {
+            event.preventDefault(); // Prevent form submission
+            dateErrorElement.style.display = 'block'; // Show error message
+            isValid = false;
+        } else {
+            dateErrorElement.style.display = 'none'; // Hide error message if valid
+        }
+
+        if (percentageValue < 0 || percentageValue > 100) {
+            event.preventDefault(); // Prevent form submission
+            document.getElementById('percentageError').style.display = 'block'; // Show error message
+            isValid = false;
+        } else {
+            document.getElementById('percentageError').style.display = 'none'; // Hide error message if valid
+        }
+
+        return isValid;
+    });
+
+    document.getElementById('fromdate').addEventListener('change', validateDates);
+    document.getElementById('todate').addEventListener('change', validateDates);
+    document.getElementById('percentage').addEventListener('input', validatePercentage);
+</script>
+
+</body>
+</html>

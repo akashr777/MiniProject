@@ -1,144 +1,210 @@
 {% extends 'homeindex1.html' %}
-{% block body %}
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us</title>
+<head>
     <style>
-        /* styles.css */
+        /* Contact Section */
+.contact.section {
+  background-color: #f9f9f9;
+}
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f7f9fc;
-        }
+/* Section Title */
+.section-title h2 {
+  font-size: 36px;
+  font-weight: 700;
+  color: #007bff;
+}
 
-        .contact-section {
-            background-color: #ffffff;
-            padding: 60px 20px;
-            text-align: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            margin: 20px auto;
-            max-width: 1200px;
-        }
+.section-title p span {
+  font-size: 18px;
+}
 
-        .contact-heading {
-            font-size: 36px;
-            color: #0a53be;
-            margin-bottom: 40px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+.description-title {
+  font-weight: 700;
+  color: #333;
+}
 
-        .contact-container {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-            margin: 0 auto;
-        }
+/* Info Section */
+.info-wrap {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
 
-        .contact-info,
-        .contact-form {
-            background: linear-gradient(135deg, #0a53be, #eaf4f0);
-            color: #fff;
-            border-radius: 10px;
-            padding: 30px;
-            max-width: 500px;
-            width: 100%;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
+.info-item {
+  transition: transform 0.3s ease;
+}
 
-        .contact-info h3,
-        .contact-form h3 {
-            font-size: 28px;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
+.info-item:hover {
+  transform: translateY(-5px);
+}
 
-        .contact-info p {
-            font-size: 18px;
-            line-height: 1.5;
-            margin: 10px 0;
-        }
+.info-item i {
+  font-size: 30px;
+  color: #007bff;
+}
 
-        .contact-form label {
-            display: block;
-            font-size: 16px;
-            margin: 15px 0 5px;
-        }
+.info-item h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #333;
+}
 
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
-            margin-bottom: 15px;
-            box-sizing: border-box;
-        }
+.info-item p {
+  font-size: 16px;
+  color: #555;
+}
 
-        .contact-form button {
-            background-color: #3498db;
-            color: #fff;
-            border: none;
-            padding: 15px 25px;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
+/* Form Section */
+.php-email-form {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
 
-        .contact-form button:hover {
-            background-color: #2980b9;
-            transform: scale(1.05);
-        }
+.php-email-form .form-control {
+  padding: 15px;
+  font-size: 16px;
+}
 
-        @media (max-width: 768px) {
-            .contact-container {
-                flex-direction: column;
-                align-items: center;
-            }
+.php-email-form .form-control:focus {
+  border-color: #007bff;
+  box-shadow: none;
+}
 
-            .contact-info,
-            .contact-form {
-                max-width: 90%;
-                margin-bottom: 20px;
-            }
-        }
+.php-email-form button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 12px 30px;
+  font-size: 18px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.php-email-form button:hover {
+  background-color: #0056b3;
+}
+
+.php-email-form .loading,
+.php-email-form .error-message,
+.php-email-form .sent-message {
+  display: none;
+}
+
+.php-email-form .sent-message {
+  color: #28a745;
+  font-weight: 700;
+  display: block;
+}
+
+.php-email-form .error-message {
+  color: red;
+  font-weight: 700;
+  display: block;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+  .info-wrap, .php-email-form {
+    margin-bottom: 30px;
+  }
+}
+
     </style>
 </head>
-<body>
-    <div class="contact-section">
-        <h2 class="contact-heading">Contact Us</h2>
-        <div class="contact-container">
-            <div class="contact-info">
-                <h3>Contact Details</h3>
-                <p><strong>Email:</strong> buildmate@gmail.com</p>
-                <p><strong>Phone:</strong> +91 7034579250</p>
-                <p><strong>Address:</strong>Koyilandi,Calicut,India</p>
+{% block body %}
+
+<!-- Contact Section -->
+<section id="contact" class="contact section py-5">
+
+  <!-- Section Title -->
+  <div class="container section-title text-center mb-5" data-aos="fade-up">
+    <h2 class="display-4">Contact</h2>
+    <p class="lead"><span>Need Help?</span> <span class="description-title fw-bold">Contact Us</span></p>
+  </div><!-- End Section Title -->
+
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+    <div class="row gy-4">
+
+      <div class="col-lg-5">
+
+        <div class="info-wrap bg-white p-4 shadow rounded">
+          <div class="info-item d-flex mb-4" data-aos="fade-up" data-aos-delay="200">
+            <i class="bi bi-geo-alt flex-shrink-0 fs-1 text-primary me-3"></i>
+            <div>
+              <h3 class="h5">Address</h3>
+              <p>Koyilandy, Calicut, Pin 673522</p>
             </div>
-            <div class="contact-form">
-                <h3>Get in Touch</h3>
-                <form action="#" method="post">
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" required>
+          </div><!-- End Info Item -->
 
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
-
-                    <label for="message">Message:</label>
-                    <textarea id="message" name="message" rows="4" required></textarea>
-
-                    <button type="submit">Submit</button>
-                </form>
+          <div class="info-item d-flex mb-4" data-aos="fade-up" data-aos-delay="300">
+            <i class="bi bi-telephone flex-shrink-0 fs-1 text-primary me-3"></i>
+            <div>
+              <h3 class="h5">Call Us</h3>
+              <p>+91 7034579250</p>
             </div>
+          </div><!-- End Info Item -->
+
+          <div class="info-item d-flex mb-4" data-aos="fade-up" data-aos-delay="400">
+            <i class="bi bi-envelope flex-shrink-0 fs-1 text-primary me-3"></i>
+            <div>
+              <h3 class="h5">Email Us</h3>
+              <p>akash@gmail.com</p>
+            </div>
+          </div><!-- End Info Item -->
+
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3915.3569121793266!2d75.6996902!3d11.4281618!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba68bb3a4e1d8d7%3A0xcd81cea0ec1df088!2sCKM%20GENERAL%20TRADING!5e0!3m2!1sen!2sin!4v1695569895801!5m2!1sen!2sin"
+            width="100%" height="270" style="border:0;" allowfullscreen=""
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+
         </div>
+      </div>
+
+      <div class="col-lg-7">
+        <form action="forms/contact.php" method="post" class="php-email-form bg-white p-4 shadow rounded" data-aos="fade-up" data-aos-delay="200">
+          <div class="row gy-4">
+
+            <div class="col-md-6">
+              <label for="name-field" class="form-label">Your Name</label>
+              <input type="text" name="name" id="name-field" class="form-control" required="">
+            </div>
+
+            <div class="col-md-6">
+              <label for="email-field" class="form-label">Your Email</label>
+              <input type="email" class="form-control" name="email" id="email-field" required="">
+            </div>
+
+            <div class="col-md-12">
+              <label for="subject-field" class="form-label">Subject</label>
+              <input type="text" class="form-control" name="subject" id="subject-field" required="">
+            </div>
+
+            <div class="col-md-12">
+              <label for="message-field" class="form-label">Message</label>
+              <textarea class="form-control" name="message" rows="10" id="message-field" required=""></textarea>
+            </div>
+
+            <div class="col-md-12 text-center">
+              <div class="loading">Loading</div>
+              <div class="error-message"></div>
+              <div class="sent-message">Your message has been sent. Thank you!</div>
+
+              <button type="submit" class="btn btn-primary btn-lg px-5 mt-3">Send Message</button>
+            </div>
+
+          </div>
+        </form>
+      </div><!-- End Contact Form -->
+
     </div>
-</body>
+
+  </div>
+
+</section><!-- /Contact Section -->
+
+
 {% endblock %}
 

@@ -1,53 +1,49 @@
-{% extends 'homeindex1.html' %}
+
+   {% extends 'homeindex1.html' %}
 {% block body %}
-    <div>
-    <form method="post" action="/ProductList_post">
-     <table class="table table-hover">
-    <tr>
-        <td>
+   <div class="container mt-4">
+    <h1 class="text-center mb-4">All Products</h1>
 
-        </td><td>
-            <input type="text" name="s" class="form-control" placeholder="Search by Name" value="{{ s }}">
-        </td><td>
-           <select name="cat" class="form-control">
-               <option value="0">ALL CATEGORY</option>
-               {% for i in cat %}
-                   <option value="{{ i.id }}" {% if cc == i.id %} selected {% endif %}>{{ i.category }}</option>
-               {% endfor %}
-           </select>
-        </td>
-        <td>
-            <input type="submit" value="Search" class="btn btn-primary">
-        </td>
-    </tr>
-    </table>
+    <form method="post" action="/uvproducts_post">
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <input type="text" name="s" class="form-control" placeholder="Search by Name" value="{{ s }}">
+            </div>
+            <div class="col-md-3">
+                <select name="cat" class="form-control">
+                    <option value="0">ALL CATEGORY</option>
+                    {% for i in cat %}
+                        <option value="{{ i.id }}" {% if cc == i.id %} selected {% endif %}>{{ i.category }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-2">
+                <input type="submit" value="Search" class="btn btn-primary w-100">
+            </div>
+        </div>
     </form>
-    <br/>
-    </div>
 
- <div class="row">
-{% for i in val %}
-
-     <div class="col-sm-3"  style="{padding-bottom: 15px;}">
-         <div class="card">
-     <p><img src="{{ i.photo.url }}" width="100px" height="100px"></p>
-                    <p>{{ i.name }}</p>
-                    <p> Stock    : {{ i.stock }}</p>
-                    <p> Price    : {{ i.price }}</p>
-                    <p> Category :{{ i.CATEGORY.category }}</p>
-             <div>
-             <a href="/view_product/{{ i.id }}" class="btn btn-primary">Add To Cart</a>
-             <a href="/view_product/{{ i.id }}" class="btn btn-info">Buy Now</a>
-                 </div>
-
-
+    <div class="row mt-4">
+        {% for i in val %}
+            <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <img src="{{ i.photo.url }}" class="card-img-top" alt="{{ i.name }}" style="height: 200px; object-fit: cover;">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">{{ i.name }}</h5>
+                        <p class="card-text">Stock: {{ i.stock }}</p>
+                        <p class="card-text">Price: {{ i.price }}.00</p>
+                        <p class="card-text">Category: {{ i.CATEGORY.category }}</p>
+{#                        <div class="mt-auto">#}
+{#                            <a href="/view_product/{{ i.id }}/cart" class="btn btn-success btn-block">Add To Cart</a>#}
+{#                        </div>#}
+                        <a href="/showMore_Product/{{ i.id }}" style="text-decoration: none">show more</a>
+                    </div>
                 </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
 
-     </div>
 
-
-
-{% endfor %}
- </div>
 
 {% endblock %}

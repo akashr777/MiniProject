@@ -1,0 +1,42 @@
+{% extends 'Seller/s1.html' %}
+{% block body %}
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Manage Offers</h2>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover table-striped">
+            <thead class="bg-primary text-white text-center">
+                <tr>
+                    <th>Si.No</th>
+                    <th>Product Name</th>
+                    <th>Category</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Percentage</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Manage</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in product %}
+                <tr class="text-center">
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ product.PRODUCT.name }}</td>
+                    <td>{{ product.PRODUCT.CATEGORY.category }}</td>
+                    <td>{{ product.title }}</td>
+                    <td>{{ product.description }}</td>
+                    <td>{{ product.Percentage }}%</td>
+                    <td>{{ product.From_date|date:"d M Y" }}</td>
+                    <td>{{ product.To_date|date:"d M Y" }}</td>
+                    <td>
+                        <a href="/editProduct/{{ product.id }}" class="btn btn-sm btn-primary">Edit</a>
+                        <a href="/deleteProduct/{{ product.id }}" class="btn btn-sm btn-danger">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}
