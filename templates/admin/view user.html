@@ -1,22 +1,29 @@
 {% extends 'admin/ADMINHOMEINDEX.html' %}
 
 {% block body %}
-<!DOCTYPE html>
-<html lang="en">
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View User</title>
+     <!-- Bootstrap Icon CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.3/font/bootstrap-icons.min.css">
+<!-- Font Awesome CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<!-- Search Icon -->
+
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 20px;
-            background-color: #f4f4f4;
+            background-color: #dddddd;
             color: #333;
         }
 
         h1 {
-            color: #2c3e50; /* Darker shade for contrast */
+            color: black; /* Darker shade for contrast */
             font-size: 2.5em;
             text-align: center;
             margin-bottom: 30px;
@@ -77,7 +84,7 @@
         }
 
         th {
-            background-color: #3498db;
+            background-color: black;
             color: #ffffff;
             font-size: 1.2em;
             text-transform: uppercase;
@@ -122,9 +129,13 @@
 
     <form id="form1" name="form1" method="post" action="/viewuserSearch#get-started" class="form-container">
         {% csrf_token %}
-        <label for="name-search">Name:</label>
-        <input type="text" id="name-search" name="textfield" placeholder="Enter name to search"/>
-        <input type="submit" name="Submit" value="Search"/>
+        <label for="name-search" style="color: black">Name:</label>
+        <input type="text" id="name-search" name="textfield" placeholder="Enter name to search" />
+        <input type="submit" name="Submit" value="Search" style="background-color: black"/>
+
+<!-- Search Icon -->
+{#<i class="fas fa-search" style="color: white; font-size: 24px;"></i>#}
+
     </form>
 
     <table>

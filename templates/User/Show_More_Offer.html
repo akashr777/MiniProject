@@ -1,99 +1,8 @@
-{#<!DOCTYPE html>#}
-{#<html lang="en">#}
-{##}
-{#<head>#}
-{#    <meta charset="UTF-8">#}
-{#    <meta name="viewport" content="width=device-width, initial-scale=1.0">#}
-{#    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">#}
-{#    <title>View Product</title>#}
-{#    <style>#}
-{#        .product-header {#}
-{#            background-color: #343a40;#}
-{#            color: white;#}
-{#            padding: 10px;#}
-{#            border-radius: 5px 5px 0 0;#}
-{#        }#}
-{##}
-{#        .product-specifications {#}
-{#            margin-top: 20px;#}
-{#        }#}
-{##}
-{#        .btn-add-to-cart {#}
-{#            background-color: #28a745;#}
-{#            color: white;#}
-{#        }#}
-{##}
-{#        .btn-add-to-cart:hover {#}
-{#            background-color: #218838;#}
-{#        }#}
-{#    </style>#}
-{#</head>#}
-{##}
-{##}
-{##}
-{##}
-{##}
-{##}
-{#<body>#}
-{##}
-{#    <div class="container mt-5">#}
-{#       <div class="container mt-5">#}
-{#    <div class="product-header text-center">#}
-{#        <h2 class="font-weight-bold">{{ data.PRODUCT.name }}</h2>#}
-{#    </div>#}
-{#    <div class="row mt-4">#}
-{#        <div class="col-md-6">#}
-{#            <div class="card border-0">#}
-{#                <img src="{{ data.PRODUCT.photo.url }}" alt="Product Image" class="card-img-top img-fluid">#}
-{#            </div>#}
-{#        </div>#}
-{#        <div class="col-md-6">#}
-{#            <div class="card border-0 shadow-sm p-3 mb-5 bg-white rounded">#}
-{#                <div class="card-body">#}
-{#                    <h4 class="card-title">Price: <span id="product-price">{{ discounted_price|floatformat:2 }}</span></h4>#}
-{#                    <h4 class="text-success">Sale Price: $<span id="sale-price">80</span></h4>#}
-{#                    <h4 class="text-danger">Offer Percentage: <span id="offer-percentage">{{ data.Percentage }}%</span></h4>#}
-{#                    <h4 class="text-info">Stock: <span id="stock">{{ data.PRODUCT.stock }}</span></h4>#}
-{#                    <h4 class="text-info">Unit: <span id="stock">{{ data.PRODUCT.unit }}</span></h4>#}
-{#                    <p>Discounted Price: {{ discounted_price|floatformat:2 }}</p>#}
-{#                    <button class="btn btn-success mt-auto">UPTO {{ data.Percentage }}% OFF</button>#}
-{#                                        <p class="text-muted mb-1">MRP:<s> Rs.{{ data.PRODUCT.price }}</s></p>#}
-{##}
-{##}
-{#                                        <p class="text-info">Description: <span id="stock">{{ data.PRODUCT.description }}</span></p>#}
-{##}
-{##}
-{#                    <div class="form-group mt-3">#}
-{#                        <label for="quantity" class="font-weight-bold">Quantity:</label>#}
-{#                        <input type="number" id="quantity" class="form-control" value="1" min="1" max="50">#}
-{#                    </div>#}
-{##}
-{#                    {% if  data.PRODUCT.stock  == 0 %}#}
-{#                        <strong style="color: red">Out Of Stocks</strong>#}
-{#                    {% else %}#}
-{#                    <a class="btn btn-primary btn-lg w-100 mt-3" href="/add_cart2/{{ data.PRODUCT.id }}">Add To Cart</a>#}
-{#                    {% endif %}#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
-{#</div>#}
-{##}
-{##}
-{#    </div>#}
-{##}
-{#    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>#}
-{#    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>#}
-{#    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>#}
-{#</body>#}
-{##}
-{#</html>#}
-
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
@@ -104,10 +13,6 @@
             color: white;
             padding: 10px;
             border-radius: 5px 5px 0 0;
-        }
-
-        .product-specifications {
-            margin-top: 20px;
         }
 
         .btn-add-to-cart {
@@ -122,6 +27,114 @@
         .btn-back {
             margin-bottom: 20px;
         }
+
+        /* Flexbox for equal height of image and text */
+        .row-equal {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .col-md-6 {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* Align to start */
+        }
+
+        /* Style the product image */
+        .product-image {
+            position: relative;
+        }
+
+        .product-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            object-fit: cover;
+        }
+
+        /* Round percentage button overlay on the image */
+        .percentage-off {
+            position: absolute;
+            top: 24px;
+            left: 475px; /* Adjusted for responsiveness */
+            background-color: orangered;
+            color: white;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        .product-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background-color: white; /* White background for product info */
+            padding: 20px; /* Add some padding */
+            border-radius: 5px; /* Round corners */
+            height: 100%; /* Make it take full height of the column */
+        }
+
+        .price-info {
+            font-size: 2rem;
+            color: orangered;
+        }
+
+        .price-info s {
+            font-size: 1.2rem;
+            color: grey;
+        }
+
+        .card-text {
+            margin-top: 15px;
+        }
+
+        .out-of-stock {
+            color: red;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        /* Flexbox for aligning buttons side by side */
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .btn-group a {
+            flex: 1;
+        }
+
+        /* Rating and review styles */
+        .rating-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: nowrap;
+        }
+
+        .rating-button {
+            background-color: #0dde1b;
+            color: white;
+            padding: 4px 8px;
+            font-size: 0.9rem;
+            border-radius: 10px;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .feedback-section {
+            margin-top: 20px;
+        }
+
+        hr {
+            margin: 10px 0;
+        }
     </style>
 </head>
 
@@ -130,37 +143,84 @@
         <a href="javascript:history.back()" class="btn btn-secondary btn-back">
             <i class="fas fa-arrow-left"></i> Back
         </a>
-        <div class="product-header text-center" style="            background-color: #3498db;
-">
-            <h2 class="font-weight-bold">{{ data.PRODUCT.name }}</h2>
-        </div>
-        <div class="row mt-4">
-            <div class="col-md-6">
-                <div class="card border-0">
-                    <img src="{{ data.PRODUCT.photo.url }}" alt="Product Image" class="card-img-top img-fluid">
+
+        <div class="row row-equal mt-4">
+            <div class="col-md-6 product-image">
+                <img src="{{ data.PRODUCT.photo.url }}" alt="Product Image" class="img-fluid">
+                <!-- Round Percentage Button -->
+                <div class="percentage-off">
+                    <p style="margin: 10px;">{{ data.Percentage }}% OFF</p>
                 </div>
             </div>
+
             <div class="col-md-6">
-                <div class="card border-0 shadow-sm p-3 mb-5 bg-white rounded">
-                    <div class="card-body">
-                          <p class="text-muted mb-1">MRP:<s> Rs.{{ data.PRODUCT.price }}</s></p>
-<h4 class="card-title">
-    <span style="font-size: 0.9rem;">Sale Price:</span>
-    <span id="product-price" style="font-size: 1.5rem; font-weight: bold;">{{ discounted_price|floatformat:2 }}
-        <span id="unit" style="font-size: 1rem;font-weight: 500">{{ data.PRODUCT.unit }}</span></span>
-                            <button class="btn  mt-auto" style="background-color: #3498db;"> {{ data.Percentage }}% off</button>
+                <div class="product-info">
+                    <h2 class="text-muted">{{ data.PRODUCT.name }}</h2>
+                    {% if data.PRODUCT.brand %}
+                        <p>by {{ data.PRODUCT.brand }}</p>
+                    {% endif %}
 
-</h4>
-                        <h4 class="text-info" style="font-size: 17px">Stock: <span id="stock">{{ data.PRODUCT.stock }}</span></h4>
-                        <p>Discounted Price: {{ discounted_price|floatformat:2 }}</p>
-                        <p class="text-info">Description: <span id="description">{{ data.PRODUCT.description }}</span></p>
+                    <p class="price-info">
+                        <i class="fas fa-indian-rupee-sign"></i> {{ discounted_price|floatformat:2 }}
+                        <s>Rs. {{ data.PRODUCT.price }}0</s> Per {{ data.PRODUCT.unit }}
+                    </p>
 
-                        {% if data.PRODUCT.stock == 0 %}
-                            <strong style="color: red">Out Of Stocks</strong>
-                        {% else %}
-                            <a class="btn  btn-lg w-100 mt-3" href="/add_cart2/{{ data.PRODUCT.id }}" style="background-color: green;color:white">Add To Cart</a>
-                        {% endif %}
-                    </div>
+                    <p class="card-text">Stock: {{ data.PRODUCT.stock }}</p>
+                    <p><b>Product Description</b><br> {{ data.PRODUCT.description }}</p>
+
+                    {% if data.PRODUCT.stock == 0 %}
+                        <p class="out-of-stock">Out Of Stock</p>
+                    {% else %}
+                        <div class="btn-group w-100">
+                            <a class="btn btn-lg d-flex align-items-center justify-content-center w-50"
+                               href="/add_cart2/{{ data.PRODUCT.id }}"
+                               style="color: white; background-color: orange; font-weight: bold; padding: 10px 20px; gap: 5px;">
+                                <i class="bi bi-cart-fill" style="color: white; font-size: 24px;"></i>
+                                ADD TO CART
+                            </a>
+                            <a class="btn btn-lg d-flex align-items-center justify-content-center w-50"
+                               href="/buy_quantity/{{ data.PRODUCT.id }}"
+                               style="color: white; background-color: orangered; font-weight: bold; padding: 10px 20px; gap: 5px;">
+                                <i class="bi bi-lightning-fill" style="color: white; font-size: 24px;"></i>
+                                BUY NOW
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+                <br>
+                <div class="rating-container">
+                    <h4 style="margin: 0; font-size: 1.2rem;">Ratings & Reviews</h4>
+                    <span class="rating-button">
+                        {{ avg_rating }}
+                        <i class="fas fa-star" style="margin-left: 3px; font-size: 0.9rem;"></i>
+                    </span>
+                    <span style="margin-left: 5px; font-size: 0.9rem; color: black; font-weight: 100;">
+                        {{ feedback_count }} ratings and reviews
+                    </span>
+                    <a class="btn bg-primary text-white" style="padding: 5px 12px; font-size: 0.9rem; font-weight: bold;">Rate Product</a>
+                </div>
+
+                <div class="feedback-section">
+                    <hr />
+                    {% if feedbacks %}
+                        {% for feedback in feedbacks %}
+                            <p><strong>User:</strong> {{ feedback.USER.name }}</p>
+                            <p><strong>Rating:</strong>
+                                {% for i in "12345" %}
+                                    {% if feedback.Rating >= i|add:"0" %}
+                                        <i class="fas fa-star" style="color: gold;"></i>
+                                    {% else %}
+                                        <i class="far fa-star" style="color: gold;"></i>
+                                    {% endif %}
+                                {% endfor %}
+                            </p>
+                            <p><strong>Feedback:</strong> {{ feedback.feedback }}</p>
+                            <p><strong>Date:</strong> {{ feedback.date|date:"F j, Y" }}</p>
+                            <hr />
+                        {% endfor %}
+                    {% else %}
+                        <p>No feedback available right now.</p>
+                    {% endif %}
                 </div>
             </div>
         </div>

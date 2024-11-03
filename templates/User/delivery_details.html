@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billing and Summary</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css" />
+    <style>
+        .text-font {
+            font-family: futura-pt, Tahoma, Geneva, Verdana, Arial, sans-serif;
+            font-weight: 700;
+            letter-spacing: .156rem;
+            font-size: 1.125rem;
+        }
+
+        .text-price {
+            padding: 0 .625rem;
+            font-family: futura-pt, Tahoma, Geneva, Verdana, Arial, sans-serif;
+            font-style: normal;
+            font-size: .75rem;
+            font-weight: 700;
+            line-height: .813rem;
+            letter-spacing: 1.6px;
+        }
+
+        .text-descriptions {
+            font-family: futura-pt, Tahoma, Geneva, Verdana, Arial, sans-serif;
+            font-style: normal;
+            font-size: .75rem;
+            font-weight: 400;
+            line-height: 1.125rem;
+            margin: .313rem 0 .938rem;
+            padding: 0 .625rem;
+        }
+
+        .button-color {
+            color: #4e4e4e;
+            border-color: #4e4e4e;
+        }
+
+        .button-order {
+            font-family: futura-pt, Tahoma, Geneva, Verdana, Arial, sans-serif;
+            font-style: normal;
+            font-size: .75rem;
+            font-weight: 700;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+<button class="back-button" onclick="window.history.back();">Back</button>
+
+
+<form method="post" action="/useradd_delivery_address">
+
+
+    <div class="container my-5 py-5">
+
+        <!--Section: Design Block-->
+        <section>
+
+            <div class="row">
+                <div class="col-md-8 mb-4">
+                    <div class="card mb-4">
+                        <div class="card-header py-3">
+                            <h5 class="mb-0 text-font">Billing Details</h5>
+                        </div>
+                        <div class="card-body">
+
+                                <div class="row mb-4">
+                                    <div class="col">
+                                        <div data-mdb-input-init class="form-outline">
+                                            <input type="text" id="form11Example1" name="fname" class="form-control" />
+                                            <label class="form-label" for="form11Example1">First Name</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div data-mdb-input-init class="form-outline">
+                                            <input type="text" id="form11Example2" name="lname" class="form-control" />
+                                            <label class="form-label" for="form11Example2">Last Name</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-4">
+                                    <div class="col">
+                                        <div data-mdb-input-init class="form-outline">
+                                            <input type="text" id="form11Example4" name="houseno" class="form-control" />
+                                            <label class="form-label" for="form11Example4">House no</label>
+                                        </div>
+                                    </div>
+                                  <div class="col">
+    <div data-mdb-input-init class="form-outline">
+        <input type="text" id="form11Example8" name="pin" class="form-control" pattern="^[0-9]{6}$" title="Please enter a valid 6-digit PIN code." required />
+        <label class="form-label" for="form11Example8">PIN Code</label>
+    </div>
+</div>
+
+                                </div>
+
+                                <div data-mdb-input-init class="form-outline mb-4">
+                                    <input type="text" id="form11Example5" name="landmark" class="form-control" />
+                                    <label class="form-label" for="form11Example5">Landmark</label>
+                                </div>
+
+                              <div data-mdb-input-init class="form-outline mb-4">
+    <input type="text" id="form11Example6" name="phone" class="form-control" pattern="^[789]\d{9}$" title="Please enter a valid 10-digit Indian phone number starting with 7, 8, or 9." required />
+    <label class="form-label" for="form11Example6">Phone</label>
+</div>
+
+                                <div data-mdb-input-init class="form-outline mb-4">
+                                    <textarea class="form-control" name="address" id="form11Example7" rows="4"></textarea>
+                                    <label class="form-label" for="form11Example7">Address</label>
+                                </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <div class="card mb-4">
+                        <div class="card-header py-3">
+                            <h5 class="mb-0 text-font">PRICE DETAILS</h5>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                                    Sub total
+                                    <span><span>&#8377;</span>{{ t|floatformat:2}}</span>
+                                </li>
+
+                                <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                                    <div>
+                                        <strong>GST</strong>
+                                        <strong>
+                                            <p class="mb-0">(Including VAT)</p>
+                                        </strong>
+                                    </div>
+                                    <span><strong><span>&#8377;</span>{{ gst|floatformat:2 }}</strong></span>
+                                </li> <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                                    <div>
+                                        <strong>Total</strong>
+                                        <strong>
+                                            <p class="mb-0">(Including VAT)</p>
+                                        </strong>
+                                    </div>
+                                    <span><strong><span>&#8377;</span>{{ tamt|floatformat:2 }}</strong></span>
+                                </li>
+                            </ul>
+
+                            <div class="text-center">
+                                <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn button-order col-md-10 bg-info text-white">Place Order</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <!--Section: Design Block-->
+
+    </div>
+ </form>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
+</body>
+
+</html>

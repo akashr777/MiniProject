@@ -17,7 +17,7 @@
                         <!-- Product Brand -->
                         <div class="form-group mb-3">
                             <label for="brand">Brand</label>
-                            <input type="text" name="brand" id="brand" class="form-control" value="{{ b }}" required  placeholder="Enter brand name">
+                            <input type="text" name="brand" id="brand" class="form-control" value="{{ b }}"   placeholder="Enter brand name">
                         </div>
 
                         <!-- Product Image -->
@@ -35,14 +35,17 @@
                         <!-- Product Price -->
                         <div class="form-group mb-3">
                             <label for="price">Price</label>
-                            <input type="text" name="price" id="price" class="form-control" value="{{ p }}" required pattern="[0-9]+" placeholder="Enter product price">
+                            <input type="text" name="price" id="price" class="form-control" value="{{ p }}" required pattern="[0-9.]+" placeholder="Enter product price">
                         </div>
+
+
 
                         <!-- Product Unit -->
                         <div class="form-group mb-3">
                             <label for="unit">Unit</label>
-                            <input type="text" name="unit" id="unit" class="form-control" value="{{ p }}" required pattern="[a-zA-Z]+" placeholder="Enter unit (e.g., kg, pcs)">
+                            <input type="text" name="unit" id="unit" class="form-control" value="{{ p }}" required pattern="[a-zA-Z\s]+" placeholder="Enter unit (e.g., kg,bag)">
                         </div>
+
  <div class="form-group mb-3">
                             <label for="unit">Description</label>
                             <input type="text" name="description" id="description" class="form-control"  required >

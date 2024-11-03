@@ -27,104 +27,200 @@
 
   <!-- Main CSS File -->
   <link href="../static/ADMINHOMENEW/assets/css/main.css" rel="stylesheet">
+    <style>
 
+        .card {
+            border: none;
+            border-radius: 12px;
+            color: #333;
+            padding: 25px;
+            margin: 15px;
+            background: white;
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 220px;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.15);
+        }
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #6c757d;
+        }
+        .card h5 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .card p {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .percentage {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #28a745;
+        }
+        .decrease {
+            color: #dc3545;
+        }
+.welcome-text {
+    opacity: 0; /* Initial state hidden */
+    transform: translateY(-20px); /* Initial state slightly above */
+    animation: fadeInSlideDown 1s ease-out forwards; /* Animation properties */
+    font-size: 28px;
+    font-weight: bold;
+    color: black; /* Change as needed */
+    text-align: center;
+    margin-top: 20px;
+}
+
+@keyframes fadeInSlideDown {
+    to {
+        opacity: 1;
+        transform: translateY(0); /* Final state */
+    }
+}
+        .input-container {
+    display: flex; /* Aligns input and button in a row */
+    align-items: center; /* Vertically centers them */
+    margin: 20px; /* Adds space around the container */
+}
+
+.styled-input {
+    padding: 10px; /* Adds space inside the input */
+    border: 2px solid black; /* Blue border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 16px; /* Increases font size */
+    transition: border-color 0.3s; /* Smooth transition for border color */
+}
+
+.styled-input:focus {
+    border-color: #0056b3; /* Darker blue when focused */
+    outline: none; /* Removes the default outline */
+}
+
+.styled-button {
+    padding: 10px 15px; /* Adds space inside the button */
+    margin-left: 10px; /* Adds space between input and button */
+    background-color: black; /* Blue background */
+    color: white; /* White text */
+    border: none; /* Removes default border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 16px; /* Increases font size */
+    cursor: pointer; /* Changes cursor to pointer on hover */
+    transition: background-color 0.3s; /* Smooth transition for background color */
+}
+
+.styled-button:hover {
+    background-color: black;
+    color: white/* Darker blue on hover */
+}
+
+
+    </style>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+  <style>
+
+    canvas {
+      border: 1px solid #ccc; /* Border around the canvas */
+      border-radius: 10px;
+        margin-left: 30px;/* Rounded corners */
+        margin-right: 30px;/* Rounded corners */
+    }
+  </style>
 </head>
 
-<body class="index-page">
+<body class="index-page" >
 
-  <header id="header" class="header d-flex align-items-center fixed-top">
+  <header id="header" class="header d-flex align-items-center fixed-top" style="background-color: white">
     <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
       <a href="index.html" class="logo d-flex align-items-center">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="../static/ADMINHOMENEW/assets/img/logo.png" alt=""> -->
-        <h1 class="sitename">BUILDMATE</h1>
+        <h1 class="sitename" style="color: black;font-weight: bold">BUILDMATE</h1>
       </a>
 
-      <nav id="navmenu" class="navmenu">
+      <nav id="navmenu" class="navmenu" >
         <ul>
 {#          <li><a href="index.html" class="active">Home</a></li>#}
 {#          <li><a href="about.html">About</a></li>#}
-          <li><a href="adminhome">Home</a></li>
-          <li><a href="viewuser#get-started">View User</a></li>
-          <li><a href="manageSeller#get-started">Manage Seller</a></li>
-          <li><a href="managecategory#get-started">Manage Category</a></li>
-{#          <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>#}
-{#            <ul>#}
-{#              <li><a href="#">Dropdown 1</a></li>#}
-{#              <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>#}
-{#                <ul>#}
-{#                    #}
-{#                  #}
-{#                  <li><a href="#">Deep Dropdown 1</a></li>#}
-{#                  <li><a href="#">Deep Dropdown 2</a></li>#}
-{#                  <li><a href="#">Deep Dropdown 3</a></li>#}
-{#                  <li><a href="#">Deep Dropdown 4</a></li>#}
-{#                  <li><a href="#">Deep Dropdown 5</a></li>#}
-{#                </ul>#}
-{#              </li>#}
-{#              <li><a href="#">Dropdown 2</a></li>#}
-{#              <li><a href="#">Dropdown 3</a></li>#}
-{#              <li><a href="#">Dropdown 4</a></li>#}
-{#            </ul>#}
-          </li>
-          <li><a href="/">Logout</a></li>
+          <li><a href="/adminhome" style="text-decoration: none;color: black">Dashboard</a></li>
+          <li><a href="/viewuser#get-started" style="text-decoration: none;color: black">View User</a></li>
+          <li><a href="/manageSeller#get-started" style="text-decoration: none;color: black">Manage Seller</a></li>
+          <li><a href="/managecategory#get-started" style="text-decoration: none;color: black">Manage Category</a></li>
+          <li><a href="/view_complaints#get-started" style="text-decoration: none;color: black">View Complaints</a></li>
+          <li><a href="/admin_view_order" style="text-decoration: none;color: black">Order history</a></li>
+          <li><a href="/" style="text-decoration: none;color: black">Logout</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
     </div>
-  </header>
+  </header><bR><br>
 
   <main class="main">
 
-    <!-- Hero Section -->
-    <section id="hero" class="hero section dark-background">
 
-      <div class="info d-flex align-items-center">
-        <div class="container">
-          <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="100">
-            <div class="col-lg-6 text-center">
-              <h2>Welcome to Admin Panel</h2>
+
+
+
+
+
+
+
+
+    <!-- Hero Section -->
+{#    <section id="hero" class="hero section dark-background">#}
+{##}
+{#      <div class="info d-flex align-items-center">#}
+{#        <div class="container">#}
+{#          <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="100">#}
+{#            <div class="col-lg-6 text-center">#}
+{#              <h2>Welcome to Admin Panel</h2>#}
 {#              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>#}
 {#              <a href="#get-started" class="btn-get-started">Get Started</a>#}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div id="hero-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
-
-        <div class="carousel-item">
-          <img src="../static/ADMINHOMENEW/assets/img/hero-carousel/hero-carousel-1.jpg" alt="">
-        </div>
-
-        <div class="carousel-item active">
-          <img src="../static/ADMINHOMENEW/assets/img/hero-carousel/hero-carousel-2.jpg" alt="">
-        </div>
-        <div class="carousel-item">
-          <img src="../static/ADMINHOMENEW/assets/img/hero-carousel/hero-carousel-3.jpg" alt="">
-        </div>
-
-        <div class="carousel-item">
-          <img src="../static/ADMINHOMENEW/assets/img/hero-carousel/hero-carousel-4.jpg" alt="">
-        </div>
-
-        <div class="carousel-item">
-          <img src="../static/ADMINHOMENEW/assets/img/hero-carousel/hero-carousel-5.jpg" alt="">
-        </div>
-
-        <a class="carousel-control-prev" href="#hero-carousel" role="button" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
-        </a>
-
-        <a class="carousel-control-next" href="#hero-carousel" role="button" data-bs-slide="next">
-          <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
-        </a>
-
-      </div>
-
-    </section><!-- /Hero Section -->
+{#            </div>#}
+{#          </div>#}
+{#        </div>#}
+{#      </div>#}
+{##}
+{#      <div id="hero-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">#}
+{##}
+{#        <div class="carousel-item">#}
+{#          <img src="../static/ADMINHOMENEW/assets/img/hero-carousel/hero-carousel-1.jpg" alt="">#}
+{#        </div>#}
+{##}
+{#        <div class="carousel-item active">#}
+{#          <img src="../static/ADMINHOMENEW/assets/img/hero-carousel/hero-carousel-2.jpg" alt="">#}
+{#        </div>#}
+{#        <div class="carousel-item">#}
+{#          <img src="../static/ADMINHOMENEW/assets/img/hero-carousel/hero-carousel-3.jpg" alt="">#}
+{#        </div>#}
+{##}
+{#        <div class="carousel-item">#}
+{#          <img src="../static/ADMINHOMENEW/assets/img/hero-carousel/hero-carousel-4.jpg" alt="">#}
+{#        </div>#}
+{##}
+{#        <div class="carousel-item">#}
+{#          <img src="../static/ADMINHOMENEW/assets/img/hero-carousel/hero-carousel-5.jpg" alt="">#}
+{#        </div>#}
+{##}
+{#        <a class="carousel-control-prev" href="#hero-carousel" role="button" data-bs-slide="prev">#}
+{#          <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>#}
+{#        </a>#}
+{##}
+{#        <a class="carousel-control-next" href="#hero-carousel" role="button" data-bs-slide="next">#}
+{#          <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>#}
+{#        </a>#}
+{##}
+{#      </div>#}
+{##}
+{#    </section><!-- /Hero Section -->#}
 
     <!-- Get Started Section -->
     <section id="get-started" class="get-started section">
@@ -133,30 +229,143 @@
 
         <div class="row justify-content-between gy-4">
             {% block body %}
+                <br><br><br>
+<div class="welcome-text" style="margin-top: 30px">Welcome to Admin Dashboard..!
+    <p style="font-size: 15px"> Manage users, track orders, and oversee inventory with ease. Stay informed and keep everything running smoothly!</p></div>
+<div class="container mt-12">
+    <div class="row">
+        <!-- Total Orders Card -->
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-icon text-center">
+                    <i class="fas fa-shopping-cart" style="color: black;font-weight: bold"></i>
+                </div>
+                <h5 class="text-center" style="color: black;font-weight: bold">Total Orders</h5>
+                <p class="text-center">{{ totalorder }}</p>
+{#                <div class="text-center">#}
+{#                    <span class="percentage"><i class="fas fa-arrow-up"></i> 8% increase</span>#}
+{#                </div>#}
+            </div>
+        </div>
+
+        <!-- Total Users Card -->
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-icon text-center">
+                    <i class="fas fa-users" style="color: black;font-weight: bold"></i>
+                </div>
+                <h5 class="text-center"style="color: black;font-weight: bold">Total Users</h5>
+                <p class="text-center">{{ totalusers }}</p>
+{#                <div class="text-center">#}
+{#                    <span class="percentage"><i class="fas fa-arrow-up"></i> 5% increase</span>#}
+{#                </div>#}
+            </div>
+        </div>
+
+        <!-- Total Revenue Card -->
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-icon text-center">
+<i class="fa-solid fa-indian-rupee-sign" style="color: black;font-weight: bold"></i>                </div>
+                <h5 class="text-center" style="color: black;font-weight: bold">Total Revenue</h5>
+                <p class="text-center">{{ totalam }}</p>
+{#                <div class="text-center">#}
+{#                    <span class="percentage decrease"><i class="fas fa-arrow-down"></i> 2% decrease</span>#}
+{#                </div>#}
+            </div>
+        </div>
+
+        <!-- Pending Deliveries Card -->
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-icon text-center">
+                    <i class="fas fa-user-md" style="color: black;font-weight: bold"></i>
+                </div>
+                <h5 class="text-center" style="color: black;font-weight: bold">Total Staffs</h5>
+                <p class="text-center">{{ totalsellers }}</p>
+{#                <div class="text-center">#}
+{#                    <span class="percentage"><i class="fas fa-clock"></i> Expected soon</span>#}
+{#                </div>#}
+            </div>
+        </div>
+    </div>
+</div><div>
+
+
+                </div>
+
+                <div class="container mt-12">
+    <div class="row">
+<div align="center">
+<canvas id="myChart" style="width:90%;"></canvas>
+
+</div>
+    </div>
+                </div>
+    <h3 style="color: black;">Ratings and Reviews</h3>
+                <div class="d-flex align-items-center justify-content-center" >
+    <form action="/adminhome_product_search" method="post">
+    <div class="input-container d-flex">
+        <input type="text" class="form-control styled-input me-2"  name="name" placeholder="Search Product" value="{{ pn }}">
+        <input type="submit" class="btn styled-button" value="Search">
+    </div>
+    </form>
+</div>
+
+</div>
+
+    <hr>
+
+    <div class="container label-container" >
+        <div class="row text-center">
+            <div class="col-2 label" >PRODUCT</div>
+            <div class="col-2 label">NAME</div>
+            <div class="col-2 label">RATING</div>
+
+        </div>
+        <hr />
+
+        {% for i in val %}
+            <div class="row feedback-row align-items-center text-center">
+                <!-- Accessing the product name via PRODUCT foreign key relationship -->
+                <div class="col-2">
+                    <img src="{{ i.pimg }}" style="width: 90px; height: 90px; object-fit: cover;" alt="Product Image">
+                </div>
+                <div class="col-2">{{ i.pname}}</div>
+
+                <div class="col-2">
+
+                    {{ i.avgrate }}
+
+
+                </div>
+                  <div class="col-2">
+
+<a href="/admin_view_rating/{{ i.id }}" style="color: blue">more</a>
+
+                </div>
+            </div>
+            <div class="col-md-3">
+</div>
+
+            <hr>
+        {% endfor %}
+    </div>
+
+  </form>
+</div>
+
             {% endblock %}
 
 
-
-          </div><!-- End Quote Form -->
+          </div>
 
         </div>
 
       </div>
 
-    </section><!-- /Get Started Section -->
-
-    <!-- Constructions Section -->
-    <section id="constructions" class="constructions section">
-
-      <!-- Section Title -->
-{#      <div class="container section-title" data-aos="fade-up">#}
-{#        <h2>Constructions</h2>#}
-{#        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>#}
-{#      </div><!-- End Section Title -->#}
-
-
-<!-- Footer -->
-
+    </section>
+      <section id="constructions" class="constructions section">
   <footer id="footer" class="footer">
 
 
@@ -240,6 +449,81 @@
 
   <!-- Main JS File -->
   <script src="../static/ADMINHOMENEW/assets/js/main.js"></script>
+    </section></main>
+
+<script>
+const xValues = {{ d }};
+const yValues = {{ s }};
+
+new Chart("myChart", {
+  type: "line",
+  data: {
+    labels: xValues,
+    datasets: [{
+      fill: false,
+      lineTension: 0.2, // Slight tension for smoother lines
+      backgroundColor: "rgba(0, 123, 255, 0.5)", // Lighter fill color
+      borderColor: "rgba(0, 123, 255, 1)", // Darker border color
+      borderWidth: 2, // Thicker line for visibility
+      pointBackgroundColor: "rgba(0, 123, 255, 1)", // Color of points
+      pointBorderColor: "rgba(255, 255, 255, 1)", // White border for points
+      pointBorderWidth: 2, // Border width of points
+      pointRadius: 5, // Size of points
+      data: yValues
+    }]
+  },
+  options: {
+    responsive: true, // Responsive resizing
+    maintainAspectRatio: false, // Allows for full canvas height
+    title: {
+      display: true,
+      text: 'Monthly Report', // Title of the chart
+      fontSize: 18, // Title font size
+      fontColor: '#333', // Title font color
+    },
+    legend: { display: false },
+    scales: {
+      xAxes: [{
+        gridLines: {
+          color: "rgba(0, 0, 0, 0.1)", // Light grid lines
+        },
+        ticks: {
+          fontColor: "#333", // Darker font color for x-axis
+          callback: function(value) { return value ; } // Label format for x-axis
+        },
+        scaleLabel: {
+          display: true,
+          labelString: 'Date', // X-axis title
+          fontColor: '#333', // X-axis title color
+          fontSize: 14 // X-axis title font size
+        }
+      }],
+      yAxes: [{
+        gridLines: {
+          color: "rgba(0, 0, 0, 0.1)", // Light grid lines
+        },
+        ticks: {
+          min: {{ mv }},
+          max: {{ mx }},
+          fontColor: "#333", // Darker font color for y-axis
+          callback: function(value) { return '₹'+ value ; } // Label format for y-axis
+        },
+        scaleLabel: {
+          display: true,
+          labelString: 'Amount', // Y-axis title
+          fontColor: '#333', // Y-axis title color
+          fontSize: 14 // Y-axis title font size
+        }
+      }]
+    },
+    tooltips: {
+      backgroundColor: "rgba(0, 0, 0, 0.7)", // Tooltip background color
+      titleFontColor: "#fff", // Tooltip title font color
+      bodyFontColor: "#fff", // Tooltip body font color
+    }
+  }
+});
+</script>
 
 </body>
 

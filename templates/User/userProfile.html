@@ -1,44 +1,49 @@
 {% extends 'homeindex1.html' %}
 {% block body %}
-    <div id="footer">
-<form action="/userProfilecode" method="post" enctype="multipart/form-data" name="form1" id="form1">
-  <table class="table table-hover">
-       <tr> <td><h>UPDATE PROFILE</h></td></tr>
-      <tr>
-          <td colspan="2">
-              <div align="center">
-              <img src="{{ i.photo.url }}" width="100px" height="100px"/>
-</div>
-          </td>
-      </tr>
-    <tr>
-      <td width="88">Name </td>
-      <td width="157"><label>
-        <input type="text" name="name" value="{{ i.name }}" class="form-control" />
-      </label></td>
-    </tr>
-    <tr>
-      <td>Phone</td>
-      <td><label>
-        <input type="text" name="phone" value="{{ i.phone }}"  class="form-control"/>
-      </label></td>
-    </tr>
-    <tr>
-      <td>Photo</td>
-      <td><label>
-        <input type="file" name="file"  class="form-control" />
-      </label></td>
-    </tr>
+    <button onclick="window.history.back();" class="btn btn-secondary">Go Back</button>
 
-    <tr>
-      <td colspan="2">
-        <div align="center">
-          <input type="submit" name="Update" value="Update" class="btn btn-primary" />
-          </div>
+    <div id="footer" style="padding: 20px; background-color: #f9f9f9; border-radius: 8px; max-width: 600px; margin: 30px auto; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
 
-      </td>
-    </tr>
-  </table>
-</form>
+        <form action="/userProfilecode" method="post" enctype="multipart/form-data" name="form1" id="form1">
+            <table class="table table-hover">
+                <tr>
+                    <td colspan="2" style="text-align: center;">
+                        <h2 style="color: black; font-weight: 500; margin-bottom: 20px;">Update Profile</h2>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div align="center">
+                            <img src="{{ i.photo.url }}" width="100px" height="100px" style="border-radius: 50%; border: 2px solid #ddd;" />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="88" style="font-weight: bold; color: black;">Name</td>
+                    <td width="157">
+                        <input type="text" name="name" value="{{ i.name }}" class="form-control" style="border-radius: 5px;"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold; color: black;">Phone</td>
+                    <td>
+                        <input type="text" name="phone" value="{{ i.phone }}" class="form-control" style="border-radius: 5px;" />
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold; color: black;">Photo</td>
+                    <td>
+                        <input type="file" name="file" class="form-control" style="border-radius: 5px;" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div align="center">
+                            <input type="submit" name="Update" value="Update" class="btn bg-black text-light" style="padding: 10px 20px; border-radius: 5px; background-color: #007bff; border: none; font-size: 16px;"/>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </form>
     </div>
 {% endblock %}

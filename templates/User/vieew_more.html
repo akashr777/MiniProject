@@ -1,0 +1,80 @@
+{% extends 'homeindex1.html' %}
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Details</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .order-table th, .order-table td {
+      vertical-align: middle;
+    }
+  </style>
+</head>
+
+{% block body %}
+<body style="background-color: #dddddd">
+
+<a href="javascript:history.back()" class="btn btn-secondary" style="float: left;margin-top: 10px">Back</a>
+
+<div class="container mt-5">
+  <table class="table table-bordered table-hover order-table">
+    <thead class="bg-primary text-white">
+      <tr>
+        <td colspan="6" align="center"><h2 class="mb-4 text-center">Order Details</h2></td>
+      </tr>
+      <tr class="text-center">
+        <th style="background-color: black;color: white">Image</th>
+        <th style="background-color: black;color: white">Product Name</th>
+        <th style="background-color: black;color: white">Quantity</th>
+        <th style="background-color: black;color: white">Total Price</th>
+        <th style="background-color: black;color: white">Order Status</th>
+ {% if s == 'paid' %}
+        <th style="background-color: black;color: white">Feedback</th>
+        <th style="background-color: black;color: white">Complaints</th>
+          {% endif %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for order in val %}
+        <tr class="text-center">
+          <td><img src="{{ order.PRODUCT.photo.url }}" alt="Product Image" style="width: 100px; height: auto;"></td>
+          <td>{{ order.PRODUCT.name }}</td>
+          <td>{{ order.Quantity }}</td>
+          <td>{{ order.price }}0</td>
+<td>
+
+            {% if order.ORDER.status == 'paid' %}
+              <span style="color: green;"><b>{{ order.ORDER.status }}</b></span>
+            {% elif order.ORDER.status == 'failed' %}
+              <span style="color: red;"><b>{{ order.ORDER.status }}</b></span>
+            {% else %}
+              {{ order.ORDER.status }}
+            {% endif %}
+          </td>
+
+          {% if order.ORDER.status == 'paid' %}
+            <td >
+              <a href="/feedback/{{ order.PRODUCT.id }}" style="color: white; text-decoration: none" class="btn bg-danger">Rate Product</a>
+            </td>
+              <td >
+              <a href="/user_send_product_complaint/{{ order.PRODUCT.id }}" style="color: white; text-decoration: none" class="btn bg-primary">Send Complaints</a>
+            </td>
+          {% else %}
+          <!-- Empty cell if feedback is not applicable -->
+          {% endif %}
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="6" class="text-center">No orders available.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+{% endblock %}

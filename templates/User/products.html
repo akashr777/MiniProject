@@ -1,7 +1,11 @@
+{% extends 'homeindex1.html' %}
 
-   {% extends 'homeindex1.html' %}
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
 {% block body %}
-   <div class="container mt-4">
+<div class="container mt-4">
     <h1 class="text-center mb-4">All Products</h1>
 
     <form method="post" action="/uvproducts_post">
@@ -22,28 +26,29 @@
             </div>
         </div>
     </form>
-
-    <div class="row mt-4">
-        {% for i in val %}
-            <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
-                <div class="card h-100 shadow-sm">
+<div class="row mt-4">
+    {% for i in val %}
+        <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+            <div class="card h-100 shadow-sm" style="border-radius: 8px; overflow: hidden;">
+                <a href="/showMore_Product/{{ i.id }}">
                     <img src="{{ i.photo.url }}" class="card-img-top" alt="{{ i.name }}" style="height: 200px; object-fit: cover;">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">{{ i.name }}</h5>
-                        <p class="card-text">Stock: {{ i.stock }}</p>
-                        <p class="card-text">Price: {{ i.price }}.00</p>
-                        <p class="card-text">Category: {{ i.CATEGORY.category }}</p>
-{#                        <div class="mt-auto">#}
-{#                            <a href="/view_product/{{ i.id }}/cart" class="btn btn-success btn-block">Add To Cart</a>#}
-{#                        </div>#}
-                        <a href="/showMore_Product/{{ i.id }}" style="text-decoration: none">show more</a>
-                    </div>
+                </a>
+                <div class="card-body d-flex flex-column" style="padding: 15px; background-color: #f8f9fa;">
+                    <p class="card-text" style="margin-bottom: 0;">{{ i.CATEGORY.category }}</p>
+                    <p class="card-title" style="margin-bottom: 0;">
+                        {{ i.name }}<br>
+                        {% if i.r is not None %}
+                            <span class="btn" style="background-color: #0dde1b; color: white; padding: 2px 5px; font-size: 0.8rem; margin-left: 5px;border-radius: 10px">
+                                {{ i.r }} ★
+                            </span>
+                        {% endif %}
+                    </p>
+                    <p class="card-text" style="margin-bottom: 0;">Stock: {{ i.stock }}</p>
+                    <p class="card-text" style="margin-bottom: 0;">Price: {{ i.price }}0</p>
                 </div>
             </div>
-        {% endfor %}
-    </div>
+        </div>
+    {% endfor %}
 </div>
-
-
 
 {% endblock %}

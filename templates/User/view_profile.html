@@ -1,32 +1,193 @@
+{#{% extends 'homeindex1.html' %}#}
+{#{% block body %}#}
+{#    <div id="footer" class="container mt-5">#}
+{#        <h2 class="text-center mb-4">View Profile</h2>#}
+{#        <form action="" method="post" enctype="multipart/form-data" name="form1" id="form1">#}
+{#            <div class="row justify-content-center">#}
+{#                <div class="col-md-8 col-lg-6">#}
+{#                    <div class="card shadow-sm">#}
+{#                        <div class="card-body">#}
+{#                            <div class="text-center mb-4">#}
+{#                                <img src="{{ i.photo.url }}" class="img-fluid rounded-circle" width="150px" height="150px" alt="Profile Photo"/>#}
+{#                            </div>#}
+{#                            <div class="form-group mb-3">#}
+{#                                <label for="name">Name</label>#}
+{#                                <input type="text" name="name" id="name" readonly value="{{ i.name }}" class="form-control"/>#}
+{#                            </div>#}
+{#                            <div class="form-group mb-3">#}
+{#                                <label for="phone">Phone</label>#}
+{#                                <input type="text" name="phone" id="phone" readonly value="{{ i.phone }}" class="form-control"/>#}
+{#                            </div>#}
+{#                            <div class="text-center">#}
+{#<button type="submit" name="Update" class="btn btn-success">#}
+{#    <a href="/edit#profile" class=" btn bg-black text-light text-decoration-none">Edit</a>#}
+{#</button>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </form>#}
+{#    </div>#}
+{#{% endblock %}#}
+{##}
 {% extends 'homeindex1.html' %}
 {% block body %}
-    <div id="footer" class="container mt-5">
-        <h2 class="text-center mb-4">View Profile</h2>
-        <form action="" method="post" enctype="multipart/form-data" name="form1" id="form1">
-            <div class="row justify-content-center">
-                <div class="col-md-8 col-lg-6">
-                    <div class="card shadow-sm">
-                        <div class="card-body">
-                            <div class="text-center mb-4">
-                                <img src="{{ i.photo.url }}" class="img-fluid rounded-circle" width="150px" height="150px" alt="Profile Photo"/>
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="name">Name</label>
-                                <input type="text" name="name" id="name" readonly value="{{ i.name }}" class="form-control"/>
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="phone">Phone</label>
-                                <input type="text" name="phone" id="phone" readonly value="{{ i.phone }}" class="form-control"/>
-                            </div>
-                            <div class="text-center">
-<button type="submit" name="Update" class="btn btn-success">
-    <a href="/edit#profile" class="text-light text-decoration-none">Edit</a>
-</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Profile Card with Zoom Image</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .profile-card {
+            width: 320px;
+            height: 400px;
+            padding: 25px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            margin: auto;
+            color: #333;
+        }
+
+        .profile-card img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            margin-top: 20px;
+            border: 4px solid white;
+            cursor: pointer;
+        }
+
+        .profile-card h2 {
+            font-size: 22px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .profile-card h4 {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .profile-card .phone {
+            font-size: 15px;
+            color: black;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .profile-card .phone i {
+            margin-right: 5px;
+        }
+
+        .edit-profile {
+            display: inline-block;
+            padding: 8px 20px;
+            color: black;
+            border: 1px solid black;
+            border-radius: 5px;
+            font-size: 14px;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .edit-profile:hover {
+            background-color: black;
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            position: relative;
+            width: 60%;
+            max-width: 400px;
+        }
+
+        .modal-content img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #333; /* Darker color for the close icon */
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<br><br>
+    <div class="profile-card">
+        <img src="{{ i.photo.url }}" alt="Profile Picture" id="profileImg">
+        <h2>{{ i.name }}</h2><br>
+        <p class="phone"><i class="fas fa-phone"></i> +91 {{ i.phone }}</p><br>
+        <a href="/edit#profile" class="edit-profile"><i class="fas fa-edit"></i> Edit Profile</a>
     </div>
+
+    <!-- Modal for full-size image -->
+    <div class="modal" id="imageModal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeModal">&times;</span>
+            <img src="{{ i.photo.url }}" alt="Full-Size Profile Picture">
+        </div>
+    </div>
+
+    <script>
+        // Get elements
+        const profileImg = document.getElementById('profileImg');
+        const imageModal = document.getElementById('imageModal');
+        const closeModal = document.getElementById('closeModal');
+
+        // Open modal on image click
+        profileImg.onclick = function() {
+            imageModal.style.display = "flex";
+        }
+
+        // Close modal on close button click
+        closeModal.onclick = function() {
+            imageModal.style.display = "none";
+        }
+
+        // Close modal when clicking outside the modal content
+        window.onclick = function(event) {
+            if (event.target === imageModal) {
+                imageModal.style.display = "none";
+            }
+        }
+    </script>
+<br><br><br>
+</body>
 {% endblock %}

@@ -1,38 +1,42 @@
 {% extends 'admin/ADMINHOMEINDEX.html' %}
+
 {% block body %}
 <body>
   <div class="container mt-5">
-    <div class="card shadow-lg">
-      <div class="card-header  text-white text-center" style="background-color: #3498db;" >
-        <h3 style="color: white" >Manage Category</h3>
+    <div class=" ">
+{#      <div class="card-header text-white text-center" style="background-color: #343a40;">#}
+        <h3 style="text-align: center;color: black">Manage Categories</h3>
       </div>
       <div class="card-body">
         <form id="form1" name="form1" method="post" action="">
-          <table class="table table-bordered table-hover text-center">
-            <thead class="bg-light">
-              <tr>
-                <th scope="col">Category</th>
-                <th scope="col">Details</th>
-                <th scope="col">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for i in val %}
-              <tr>
-                <td>{{ i.category }}</td>
-                <td>{{ i.details }}</td>
-                <td>
-                  <a href="deletecategory/{{ i.id }}" class="btn btn-danger btn-sm">Delete</a>
-                </td>
-              </tr>
-              {% endfor %}
-              <tr>
-                <td colspan="3">
-                  <a href="/Addcategory#get-started" class="btn btn-success">Add New Category</a>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover text-center">
+              <thead class="thead-dark" >
+
+                <tr>
+                  <th scope="col" style="background-color: black;color: white;padding: 15px;">CATEGORY</th>
+                  <th scope="col" style="background-color: black;color: white">DETAILS</th>
+                  <th scope="col" style="background-color: black;color: white">ACTIONS</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for i in val %}
+                <tr>
+                  <td>{{ i.category }}</td>
+                  <td>{{ i.details }}</td>
+                  <td>
+                    <a href="deletecategory/{{ i.id }}" class="btn btn-danger btn-sm" style="font-weight: bold">Delete</a>
+                  </td>
+                </tr>
+                {% endfor %}
+                <tr>
+                  <td colspan="3">
+                    <a href="/Addcategory#get-started" class="btn btn-success" style="font-weight: bold">Add New Category</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </form>
       </div>
     </div>
@@ -44,30 +48,35 @@
       max-width: 900px;
       margin: 0 auto;
       border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     }
 
     .card-header {
-      font-size: 1.5rem;
+      font-size: 1.75rem;
       font-weight: bold;
+      padding: 20px;
     }
 
     /* Table Styling */
     .table {
       border-radius: 10px;
-      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden; /* Prevents border-radius from being cut off */
     }
 
-    .table thead {
-      background-color: #f8f9fa;
+    .thead-dark {
+      background-color: #343a40;
+      color: white;
     }
 
     .table-hover tbody tr:hover {
-      background-color: #f1f3f5;
+      background-color: #e9ecef;
     }
 
+    /* Button Styling */
     .btn {
-      padding: 8px 12px;
+      padding: 8px 16px;
       font-size: 0.9rem;
+      transition: background-color 0.3s, transform 0.3s;
     }
 
     .btn-danger {
@@ -76,6 +85,7 @@
 
     .btn-danger:hover {
       background-color: #c82333;
+      transform: translateY(-2px);
     }
 
     .btn-success {
@@ -84,6 +94,7 @@
 
     .btn-success:hover {
       background-color: #218838;
+      transform: translateY(-2px);
     }
   </style>
 </body>

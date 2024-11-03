@@ -25,6 +25,10 @@
   <link href="../static/home/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Main CSS File -->
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: Moderna
@@ -115,7 +119,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: white;
     padding: 20px;
 }
 
@@ -351,7 +355,7 @@ button {
 
 /* General Header Styling */
 .header {
-  background-color: #ffffff;
+    background-color: white; /* Black */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 20px 0;
   z-index: 1000;
@@ -361,7 +365,7 @@ button {
 .logo .sitename {
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
-  color: #007bff;
+  color: white;
   font-size: 1.5rem;
   letter-spacing: 1px;
 }
@@ -369,18 +373,21 @@ button {
 /* Navigation Menu */
 .navmenu ul {
   display: flex;
-  gap: 5px;
+  gap: 0px;
   list-style: none;
   margin: 0;
-  padding: 0;
+    font-size: 13px;
+      font-weight: 400;
+
+
 }
 
 .navmenu a {
-  color: #333;
+    color: black; /* Dark Grey */
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 400;
   position: relative;
-  padding: 8px 15px;
+{#  padding: 8px 15px;#}
   transition: color 0.3s ease-in-out;
 }
 
@@ -392,7 +399,7 @@ button {
   bottom: 0;
   width: 100%;
   height: 2px;
-  background-color: #007bff;
+  background-color: #ff6600;
   transform: scaleX(0);
   transform-origin: right;
   transition: transform 0.3s ease-in-out;
@@ -404,10 +411,9 @@ button {
 }
 
 .navmenu a:hover {
-  color: #007bff;
+    color: black;
 }
 
-/* Cart Icon Styling */
 .cart-icon i {
   color: #007bff;
   transition: color 0.3s ease-in-out;
@@ -455,69 +461,12 @@ button {
   }
 }
 
-
-        /*--------------------------------------------------------------
-# Global Footer
---------------------------------------------------------------*/
 .footer {
   color: var(--default-color);
   background-color: var(--background-color);
   font-size: 14px;
   padding-bottom: 50px;
   position: relative;
-}
-
-.footer .footer-newsletter {
-  background-color: color-mix(in srgb, var(--accent-color), transparent 96%);
-  padding: 50px 0;
-}
-
-.footer .footer-newsletter h4 {
-  font-size: 24px;
-}
-
-.footer .footer-newsletter .newsletter-form {
-  margin-top: 30px;
-  margin-bottom: 15px;
-  padding: 6px 8px;
-  position: relative;
-  background-color: var(--surface-color);
-  border: 1px solid color-mix(in srgb, var(--accent-color), transparent 80%);
-  box-shadow: 0px 2px 25px rgba(0, 0, 0, 0.1);
-  display: flex;
-  transition: 0.3s;
-  border-radius: 4px;
-}
-
-.footer .footer-newsletter .newsletter-form:focus-within {
-  border-color: var(--accent-color);
-}
-
-.footer .footer-newsletter .newsletter-form input[type=email] {
-  border: 0;
-  padding: 4px;
-  width: 100%;
-  background-color: var(--surface-color);
-  color: var(--default-color);
-}
-
-.footer .footer-newsletter .newsletter-form input[type=email]:focus-visible {
-  outline: none;
-}
-
-.footer .footer-newsletter .newsletter-form input[type=submit] {
-  border: 0;
-  font-size: 16px;
-  padding: 0 20px;
-  margin: -7px -8px -7px 0;
-  background: var(--accent-color);
-  color: var(--contrast-color);
-  transition: 0.3s;
-  border-radius: 0 4px 4px 0;
-}
-
-.footer .footer-newsletter .newsletter-form input[type=submit]:hover {
-  background: color-mix(in srgb, var(--accent-color), transparent 20%);
 }
 
 .footer .footer-top {
@@ -585,6 +534,8 @@ button {
 
 .footer .footer-links ul a:hover {
   color: var(--accent-color);
+    text-decoration: none;
+    color:blue;
 }
 
 .footer .footer-about a {
@@ -614,12 +565,6 @@ button {
 }
 
 
-{#           h1 {#}
-{#            color: #2c3e50; /* Darker shade for contrast */#}
-{#            font-size: 2.5em;#}
-{#            text-align: center;#}
-{#            margin-bottom: 30px;#}
-{#        }#}
 
         .form-container {
             display: flex;
@@ -659,6 +604,18 @@ button {
 
 
 
+         @keyframes fadeSlideIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
     </style>
     <!-- Add updated Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -666,64 +623,63 @@ button {
 
 </head>
 
-<body class="index-page">
-
-{##}
-{#<div class="banner-container">#}
-{#        <div class="banner-item">#}
-{#            <img src="https://via.placeholder.com/400x300?text=Image+1" alt="Banner Image 1">#}
-{#        </div>#}
-{#        <div class="banner-item">#}
-{#            <img src="https://via.placeholder.com/400x300?text=Image+2" alt="Banner Image 2">#}
-{#        </div>#}
-{#        <div class="banner-item">#}
-{#            <img src="https://via.placeholder.com/400x300?text=Image+3" alt="Banner Image 3">#}
-{#        </div>#}
-{#    </div>#}
-
-
-
-
+<body class="index-page" style="background-color: white">
 
 <header id="header" class="header d-flex align-items-center fixed-top shadow-sm">
-  <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+<h1 class="sitename m-0" style="color: black; font-weight: 700; font-size: 30px; padding-left: 60px;">BUILDMATE</h1>
 
-    <a href="index.html" class="logo d-flex align-items-center text-decoration-none">
-      <!-- Optional image logo -->
-      <!-- <img src="../static/home/assets/img/logo.png" alt="BuildMate Logo" class="logo-img"> -->
-      <h1 class="sitename text-primary m-0">BUILDMATE</h1>
-    </a>
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+{#        <nav id="navmenu" class="navmenu ms-auto">#}
+{#            <ul class="d-flex align-items-center list-unstyled mb-0">#}
+{#                <li class="ms-4"><a href="/userhome" class="nav-link">HOME</a></li>#}
+{#                <li class="ms-4"><a href="/view_profile#profile" class="nav-link">PROFILE</a></li>#}
+{#                <li class="ms-4"><a href="/about#profile" class="nav-link">ABOUT</a></li>#}
+{#                <li class="ms-4"><a href="/contact#profile" class="nav-link">CONTACT US</a></li>#}
+{#                <li class="ms-4"><a href="/uvproducts#profile" class="nav-link">PRODUCTS</a></li>#}
+{#                <li class="ms-4"><a href="/view_order#profile" class="nav-link">ORDER HISTORY</a></li>#}
+{#                <li class="ms-4"><a href="/send_complaint#profile" class="nav-link">COMPLAINTS</a></li>#}
+{#                <li class="ms-4"><a href="/" class="nav-link">LOGOUT</a></li>#}
+{#                <li class="ms-4">#}
+{#                   <a href="/view_cart" class="nav-link cart-icon">#}
+{#                       <i class="bi bi-cart-fill fs-3" style="color: black; font-weight: 600; margin-right: 1px"><span style="color: orangered">{{ request.session.ccart }}</span></i>#}
+{#                   </a>#}
+{##}
+{#                </li>#}
+{#            </ul>#}
+{#            <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>#}
+{#        </nav>#}
 
-    <nav id="navmenu" class="navmenu d-flex align-items-center">
-      <ul class="d-flex align-items-center list-unstyled mb-0">
-        <li class="ms-4"><a href="/userhome" class="nav-link" >HOME</a></li>
-        <li class="ms-4"><a href="/view_profile#profile" class="nav-link">PROFILE</a></li>
-        <li class="ms-4"><a href="/about#profile" class="nav-link">ABOUT</a></li>
-        <li class="ms-4"><a href="/contact#profile" class="nav-link">CONTACT US</a></li>
-        <li class="ms-4"><a href="/uvproducts#profile" class="nav-link">PRODUCTS</a></li>
-        <li class="ms-4"><a href="/" class="nav-link">LOGOUT</a></li>
-        <li class="ms-4">
-          <a href="/view_cart" class="nav-link cart-icon">
-            <i class="bi bi-cart fs-3"></i>
-          </a>
+        <nav id="navmenu" class="navmenu ms-auto">
+    <ul class="d-flex align-items-center list-unstyled mb-0" style="gap: 10px;"> <!-- Adjust gap as needed -->
+        <li><a href="/userhome" class="nav-link" style="font-size: 15px">HOME</a></li>
+        <li><a href="/view_profile#profile" class="nav-link" style="font-size: 15px">PROFILE</a></li>
+        <li><a href="/about#profile" class="nav-link" style="font-size: 15px">ABOUT</a></li>
+        <li><a href="/contact#profile" class="nav-link" style="font-size: 15px">CONTACT US</a></li>
+        <li><a href="/uvproducts#profile" class="nav-link" style="font-size: 15px">PRODUCTS</a></li>
+
+        <li><a href="/view_order#profile" class="nav-link" style="font-size: 15px">ORDER HISTORY</a></li>
+        <li><a href="/send_complaint#profile" class="nav-link" style="font-size: 15px">COMPLAINTS</a></li>
+        <li><a href="/" class="nav-link" style="font-size: 15px">LOGOUT</a></li>
+        <li>
+            <a href="/view_cart" class="nav-link cart-icon">
+                <i class="bi bi-cart-fill fs-3" style="color: black; font-weight: 600; margin-right: 1px;">
+                    <span style="color: orangered">{{ request.session.ccart }}</span>
+                </i>
+            </a>
         </li>
-      </ul>
-      <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-    </nav>
+    </ul>
+    <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+</nav>
 
-  </div>
+    </div>
 </header>
+
+
+
 
 
   <main class="main">
 
-    <!-- Hero Section -->
-{#    <section id="ero" class="hro secion dark-background">#}
-
-{#       <img src="../static/home/assets/img/hero-bg.jpg" alt="" data-aos="fade-in">#}
-
-
-{#    </section><!-- /Hero Section -->#}
 
 
     <section id="profile" class="features section" >
@@ -734,86 +690,61 @@ button {
      <br/>
      {% block body %}
 
-         <h2 style="color: black;text-align: center;font-weight: 600;padding: 20px;margin-top: 20px">Offers for you</h2>
+         <h2 class="offerhead" style="color: black;text-align: center;font-weight: 600;padding: 20px;margin-top: 20px">Offers for you</h2>
 
-{#<form method="post" action="/userhome_post">#}
-<form method="POST" action="userhome_post">
+{#<form method="post" action="/userhome_post">#}<form method="POST" action="userhome_post" style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin: 0 15px;">
     {% csrf_token %}
-{#    <input type="text" name="search_term" placeholder="Search for products..." required>#}
-{#    <button type="submit" class="btn btn-primary">Search</button>#}
-{#</form>#}
-
-        <div class="row justify-content-center">
-            <div class="col-md-4">
-                <input type="text" name="search_term" class="form-control" placeholder="Search by Name" >
-            </div>
-            <div class="col-md-3">
-                <select name="cat" class="form-control">
-                    <option value="0">ALL CATEGORY</option>
-                    {% for i in cat %}
-                        <option value="{{ i.id }}" {% if cc == i.id %} selected {% endif %}>{{ i.category }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            <div class="col-md-2">
-                <input type="submit" value="Search" class="btn btn-primary w-100">
-            </div>
+    <div class="row justify-content-center align-items-center mb-4">
+        <div class="col-md-4 mb-2 mb-md-0">
+            <input type="text" name="search_term" class="form-control" placeholder="Search by Name" style="border-radius: 5px;">
         </div>
-
-
-
-
-
-
-{##}
-{#<div class="container">#}
-{#    <div class="row">#}
-{#        {% for i in offer %}#}
-{#        <div class="col-md-4 col-sm-6 mb-4 d-flex align-items-stretch"> <!-- Align cards to stretch for equal height -->#}
-{#            <div class="card h-100 shadow-sm"> <!-- Add shadow for effect -->#}
-{#                <img src="{{ i.PRODUCT.photo.url }}" class="card-img-top" alt="Product Image" style="height: 200px; object-fit: cover;"> <!-- Fixed image height -->#}
-{#                <div class="card-body text-center d-flex flex-column">#}
-{#                    <h5 class="card-title" style="font-weight: bold; color: #333;">{{ i.PRODUCT.name }}</h5>#}
-{#                    <p class="text-muted mb-1">MRP:<s> Rs.{{ i.PRODUCT.price }}</s></p>#}
-{#                    <p class="card-text" style="font-weight: 600; color: #000;">Sale Price: Rs. {{ i.discounted_price|floatformat:2 }}</p>#}
-{#                    <button class="btn btn-success mt-auto">UPTO {{ i.Percentage }}% OFF</button>#}
-{#                    <p>by {{ i.PRODUCT.brand }}</p><!-- Button stays at the bottom -->#}
-{#                    <p class="mt-2 mb-0"><b>From date: </b>{{ i.From_date }}</p>#}
-{#                    <p><b>End date: </b>{{ i.To_date }}</p>#}
-{#                    <a href="/Show_More_Offer/{{ i.id }}" style="text-decoration: none">See more</a>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{#        {% endfor %}#}
-{#    </div>#}
-{#</div>#}
-
-
-    <div class="row mt-4">
+        <div class="col-md-3 mb-2 mb-md-0">
+            <select name="cat" class="form-control" style="border-radius: 5px;">
+                <option value="0">ALL CATEGORY</option>
+                {% for i in cat %}
+                    <option value="{{ i.id }}" {% if cc == i.id %} selected {% endif %}>{{ i.category }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-md-2">
+            <input type="submit" value="Search" class="btn btn-primary w-100" style="border-radius: 5px; font-weight: 600;">
+        </div>
+    </div>
+<div class="container mt-4"> <!-- Added a container with top margin -->
+    <div class="row">
         {% for i in offer %}
-            <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
-                <div class="card h-100 shadow-sm">
-                    <img src="{{ i.PRODUCT.photo.url }}" class="card-img-top" alt="{{ i.PRODUCT.name }}" style="height: 200px; object-fit: cover;">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">{{ i.PRODUCT.name }}</h5>
-                        <p class="card-text">Stock: {{ i.PRODUCT.stock }}</p>
-                        <p class="card-text">Category: {{ i.PRODUCT.CATEGORY.category }}</p>
-                        <p class="text-muted mb-1">MRP:<s> Rs.{{ i.PRODUCT.price }}</s></p>
-                    <p class="card-text" style="font-weight: 600; color: #000;">Sale Price: Rs. {{ i.discounted_price|floatformat:2 }}</p>
-                    <button class="btn btn-success mt-auto">UPTO {{ i.Percentage }}% OFF</button>
-                    <p>by {{ i.PRODUCT.brand }}</p><!-- Button stays at the bottom -->
-                    <p class="mt-2 mb-0"><b>From date: </b>{{ i.From_date }}</p>
-                    <p><b>End date: </b>{{ i.To_date }}</p>
-                        <a href="/Show_More_Offer/{{ i.id }}" style="text-decoration: none">See more</a>
+            <div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-4"> <!-- Keeping the column without extra padding -->
+                <div class="card h-100 shadow-sm" style="border-radius: 10px;"> <!-- Card design -->
+                    <a href="/Show_More_Offer/{{ i.id }}">
+                        <img src="{{ i.PRODUCT.photo.url }}" class="card-img-top" alt="{{ i.PRODUCT.name }}" style="height: 180px; object-fit: cover; border-top-left-radius: 10px; border-top-right-radius: 10px;">
+                    </a>
+                    <div class="card-body d-flex flex-column" style="padding: 15px; background-color: #f8f9fa;">
+                        <p class="card-text" style="color: grey; font-size: 0.9rem; margin-bottom: 0;">{{ i.PRODUCT.CATEGORY.category }}</p>
+                        <p class="card-title" style="font-size: 1.1rem; font-weight: bold; color: #333; margin-bottom: 0;">
+                            {{ i.PRODUCT.name }}
+                             {% if i.r is not None %}
+                            <span class="btn" style="background-color: #0dde1b; color: white; padding: 2px 5px; font-size: 0.8rem; margin-left: 5px;border-radius: 10px">
+                                {{ i.r }} ★
+                            </span>
+                        {% endif %}
+                        </p>
+                        <p class="card-text" style="color: orangered; font-size: 1.1rem; margin-bottom: 0;">
+                            <i class="fas fa-indian-rupee-sign"></i> {{ i.discounted_price|floatformat:2 }} per {{ i.PRODUCT.unit }}
+                            <p>
+                            <s style="color: grey; font-size: 0.9rem;">
+                                <i class="fas fa-indian-rupee-sign"></i> {{ i.PRODUCT.price }}0
+                            </s>
+                    </p>
+                        </p>
+                        <button class="btn btn-success mt-auto" style="font-weight: bold; border-radius: 5px;">UP TO {{ i.Percentage }}% OFF</button>
                     </div>
                 </div>
             </div>
         {% endfor %}
     </div>
-           </form>
+</div>
 
-
-
+</form>
 
 
         {% endblock %}
@@ -833,13 +764,13 @@ button {
     <div class="container footer-top">
       <div class="row gy-4">
         <div class="col-lg-4 col-md-6 footer-about">
-          <a href="index.html" class="d-flex align-items-center">
-            <span class="sitename">BuildMate</span>
-          </a>
+          <p  class="d-flex align-items-center">
+            <span style="font-size: 30px" >BuildMate</span>
+          </p>
           <div class="footer-contact pt-3">
             <p>CKM General Trading, Koyilandi</p>
             <p>Kerala, India</p>
-            <p class="mt-3"><strong>Phone:</strong> <span>+91 98765 43210</span></p>
+            <p class="mt-3"><strong>Phone:</strong> <span>+91 7034579250</span></p>
             <p><strong>Email:</strong> <span>support@buildmate.com</span></p>
           </div>
         </div>
@@ -847,11 +778,11 @@ button {
         <div class="col-lg-2 col-md-3 footer-links">
           <h4>Quick Links</h4>
           <ul>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">About Us</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Products</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Services</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Contact</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="/userhome">Home</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="/about">About Us</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="/uvproducts">Products</a></li>
+{#            <li><i class="bi bi-chevron-right"></i> <a href="#">Services</a></li>#}
+            <li><i class="bi bi-chevron-right"></i> <a href="/contact">Contact</a></li>
           </ul>
         </div>
 

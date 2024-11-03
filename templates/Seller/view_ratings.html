@@ -1,0 +1,41 @@
+{% extends 'Seller/s1.html' %}
+
+{% block body %}
+<div class="container">
+    <h2>My Product Ratings</h2>
+    {% if ratings %}
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Feedback</th>
+                    <th>Rating</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in ratings %}
+                    <tr>
+                        <td>{{ item.product.name }}</td>
+                        <td>
+                            {% for feedback in item.feedback %}
+                                <p>{{ feedback.feedback }}</p>
+                            {% empty %}
+                                <p>No feedback available.</p>
+                            {% endfor %}
+                        </td>
+                        <td>
+                            {% for feedback in item.feedback %}
+                                <p>{{ feedback.Rating }}</p>
+                            {% empty %}
+                                <p>No ratings yet.</p>
+                            {% endfor %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No products found for your seller account.</p>
+    {% endif %}
+</div>
+{% endblock %}

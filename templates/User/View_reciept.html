@@ -1,0 +1,120 @@
+<!-- Invoice 1 - Bootstrap Brain Component -->
+<html>
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+</head>
+<body>
+<section class="py-3 py-md-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-9 col-xl-8 col-xxl-7">
+       <div id="GFG">
+        <div class="row gy-3 mb-3">
+          <div class="col-6">
+            <h2 class="text-uppercase text-endx m-0">Invoice</h2>
+          </div>
+          <div class="col-6">
+            <a class="d-block text-end" href="#!">
+              <img src="../../static/BUILDMATE.png" class="img-fluid" alt="BootstrapBrain Logo" width="135px" height="44px">
+            </a>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-12 col-sm-6 col-md-8">
+            <h4>Bill To</h4>
+            <address>
+              <strong>{{ ud.firstName }} {{ ud.lastName }}</strong><br>
+              {{ ud.Address }}<br>
+              House no:{{ ud.houseNo }}<br>
+              {{ ud.landMark }}, {{ ud.pin }}<br>
+              Phone: +91 {{ ud.phone }}<br>
+            </address>
+          </div>
+          <div class="col-12 col-sm-6 col-md-4">
+            <h4 class="row">
+              <span class="col-6">Order Id</span>
+              <span class="col-6 text-sm-end">{{ ud.ORDER.id }}</span>
+            </h4>
+            <div class="row">
+              <span class="col-6">Invoice Date</span>
+              <span class="col-6 text-sm-end">{{ ud.ORDER.date }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-12">
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col" class="text-uppercase">Qty</th>
+                    <th scope="col" class="text-uppercase">Product</th>
+                    <th scope="col" class="text-uppercase text-end">Unit Price</th>
+                    <th scope="col" class="text-uppercase text-end">Amount</th>
+                  </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                {% for i in val %}
+                  <tr>
+                    <th scope="row">{{ i.Quantity }}</th>
+                    <td>{{ i.PRODUCT.name }}</td>
+                    <td class="text-end"><span>&#8377;</span>{{ i.PRODUCT.price }}0</td>
+                    <td class="text-end"><span>&#8377;</span>{{ i.amt }}0</td>
+                  </tr>
+              {% endfor %}
+                  <tr>
+                    <td colspan="3" class="text-end">Subtotal</td>
+                    <td class="text-end"><span>&#8377;</span>{{ amt }}0</td>
+                  </tr>
+                  <tr>
+                    <td colspan="3" class="text-end">GST (10%)</td>
+                    <td class="text-end"><span>&#8377;</span>{{ gst }}0</td>
+                  </tr>
+
+                  <tr>
+                    <th scope="row" colspan="3" class="text-uppercase text-end">Total</th>
+                    <td class="text-end"><span>&#8377;</span>{{ tamt }}0</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+       </div>
+        <div class="row justify-content-center">
+          <div class="col-12 text-center">
+            <button type="submit" class="btn btn-primary mb-3 me-2" onclick="printDiv()">Download Invoice</button>
+            <button type="button" class="btn btn-danger mb-3" onclick="window.history.back()">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+    function printDiv() {
+        let divContents = document.getElementById("GFG").innerHTML;
+        let printWindow = window.open('', '', 'height=500, width=500');
+        printWindow.document.open();
+        printWindow.document.write(`
+            <html>
+            <head>
+                <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+                <title> </title>
+                <style>
+                    body { font-family: Arial, sans-serif; }
+                    h1 { color: #333; }
+                </style>
+            </head>
+            <body>
+                ${divContents}
+            </body>
+            </html>
+        `);
+        printWindow.document.close();
+        printWindow.print();
+    }
+</script>
+</body>
+</html>

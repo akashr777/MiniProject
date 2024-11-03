@@ -1,0 +1,102 @@
+{% extends 'admin/ADMINHOMEINDEX.html' %}
+
+{% block body %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Details</title>
+    <!-- Bootstrap Icon CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.3/font/bootstrap-icons.min.css">
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #dddddd;
+            color: #333;
+        }
+
+        h2 {
+            color: black; /* Darker shade for contrast */
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            border-collapse: collapse;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for the table */
+            border-radius: 8px; /* Rounded corners */
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            white-space: nowrap;
+        }
+
+        th {
+            background-color: black;
+            color: #ffffff;
+            font-size: 1.2em;
+            text-transform: uppercase;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1; /* Highlight row on hover */
+        }
+
+        /* Responsive design for smaller screens */
+        @media (max-width: 768px) {
+            table {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+
+<body><div class="text-start">
+    <button onclick="window.history.back()" class="btn btn-secondary">
+        Go Back
+    </button>
+</div>
+
+
+    <div class="container mt-5">
+        <h2>Order Details</h2>
+
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr class="text-center">
+                    <th style="background-color: black;color: white">Product Name</th>
+                    <th style="background-color: black;color: white">Quantity</th>
+                    <th style="background-color: black;color: white">Total Price</th>
+                    <th style="background-color: black;color: white">Order Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in val %}
+                <tr class="text-center">
+                    <td>{{ order.PRODUCT.name }}</td>
+                    <td>{{ order.Quantity }}</td>
+                    <td>{{ order.price }}0</td>
+                    <td style="color: green; font-weight: bold;">{{ order.ORDER.status }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4" class="text-center">No orders available.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+{% endblock %}

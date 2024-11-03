@@ -16,7 +16,7 @@
         }
 
         h1 {
-            color: #2c3e50; /* Custom heading color */
+            color: black; /* Custom heading color */
             font-size: 2.5em;
             text-align: center;
             margin-bottom: 30px;
@@ -79,8 +79,8 @@
         }
 
         th {
-            background-color: #3498db;
-            color: #ffffff;
+            background-color: black;
+            color: white;
             font-size: 1.2em;
             text-transform: uppercase;
         }
@@ -166,9 +166,9 @@
     <div class="form-container">
         <form id="form1" name="form1" method="post" action="sellerSearch#get-started">
             {% csrf_token %}
-            <label for="name-search">Name:</label>
+            <label for="name-search" style="color: black">Name:</label>
             <input type="text" id="name-search" name="textfield" placeholder="Enter name to search"/>
-            <input type="submit" name="Submit" value="Search"/>
+            <input type="submit" name="Submit" value="Search" style="background-color: black"/>
         </form>
     </div>
 
@@ -192,8 +192,8 @@
                 <td>{{ i.email }}</td>
                 <td>{{ i.status }}</td>
                 <td class="actions">
-                    <a href="/EditSeller/{{ i.id }}#get-started" class="btn btn-info" style="text-decoration: none">Edit</a>
-                    <a href="/deleteSeller/{{ i.id }}" class="btn btn-danger" style="text-decoration: none">Delete</a>
+                    <a href="/EditSeller/{{ i.id }}#get-started" class="btn btn-info text-white" style="text-decoration: none"><b>Edit</b></a>
+                    <a href="/deleteSeller/{{ i.id }}" class="btn btn-danger text-white" style="text-decoration: none"><b>Delete</b></a>
                 </td>
             </tr>
             {% endfor %}
@@ -201,7 +201,7 @@
     </table>
 
     <div class="add-new">
-        <a href="/addSeller#get-started">Add New</a>
+        <a href="/addSeller#get-started" style="background-color: green;"><b>Add New</b></a>
     </div>
 </body>
 </html>

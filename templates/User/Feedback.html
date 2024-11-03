@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Section</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #e0f7fa; /* Soft background color */
+            margin: 0;
+            padding: 0;
+            display: flex; /* Flexbox for centering */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            height: 100vh; /* Full viewport height */
+            color: #333; /* Darker text color */
+        }
+
+        .feedback-section {
+            max-width: 400px;
+            margin: 20px;
+            padding: 30px;
+            border: none; /* Removed border for a cleaner look */
+            border-radius: 12px; /* Slightly rounded corners */
+            background-color: #ffffff; /* White background for contrast */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Enhanced shadow effect */
+            transition: transform 0.3s; /* Animation for hover effect */
+        }
+
+        .feedback-section:hover {
+            transform: translateY(-5px); /* Slight lift on hover */
+        }
+
+        h2 {
+            text-align: center; /* Center the heading */
+            margin-bottom: 20px; /* Space below heading */
+            font-size: 24px; /* Larger heading size */
+            color: #00796b; /* Dark teal color for heading */
+        }
+
+        .stars {
+            display: flex;
+            justify-content: center; /* Center stars */
+            cursor: pointer;
+            margin-bottom: 15px; /* Space below stars */
+        }
+
+        .star {
+            font-size: 36px; /* Larger star size */
+            color: #ccc;
+            transition: color 0.2s; /* Smooth transition for star color */
+        }
+
+        .star.selected {
+            color: #ffca28; /* Gold color for selected stars */
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+            margin-top: 10px;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: none; /* Disable resizing */
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle inner shadow */
+            font-size: 16px; /* Slightly larger text for better readability */
+        }
+
+        button {
+            margin-top: 15px; /* Space above button */
+            padding: 12px;
+            background-color: #00796b; /* Dark teal color for button */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px; /* Larger button text */
+            width: 100%; /* Make button full width */
+            transition: background-color 0.3s, transform 0.3s; /* Smooth transition */
+        }
+
+        button:hover {
+            background-color: #004d40; /* Darker shade on hover */
+            transform: translateY(-2px); /* Lift effect on hover */
+        }
+
+        #ratingMessage {
+            margin-top: 15px; /* Space above message */
+            font-size: 16px;
+            text-align: center; /* Center the message */
+        }
+    </style>
+</head>
+<body>
+<div style="position:absolute;top: 10px;left: 20px;">
+<button type="button" class="btn btn-secondary" onclick="window.history.back()" style="background-color: lightseagreen">Go Back</button>
+</div>
+<form action="/add_rating" method="post">
+<div class="feedback-section">
+    <h2>Feedback</h2>
+    <div class="stars" name="rating">
+        <span class="star" data-value="1">&#9733;</span>
+        <span class="star" data-value="2">&#9733;</span>
+        <span class="star" data-value="3">&#9733;</span>
+        <span class="star" data-value="4">&#9733;</span>
+        <span class="star" data-value="5">&#9733;</span>
+    </div>
+    <textarea id="feedbackText" name="feedback" placeholder="Leave your feedback here..."></textarea>
+    <button id="submitFeedback">Submit</button>
+    <div id="ratingMessage" name=""></div>
+    <input type="hidden" id="rating" name="rating"/>
+</div>
+    </form>
+<script>
+    const stars = document.querySelectorAll('.star');
+    const ratingMessage = document.getElementById('ratingMessage');
+    let rating = 0;
+
+    // Star rating functionality
+    stars.forEach(star => {
+        star.addEventListener('click', () => {
+            rating = star.getAttribute('data-value');
+            document.getElementById("rating").value = rating; // Set hidden input value
+            stars.forEach(s => s.classList.remove('selected'));
+            for (let i = 0; i < rating; i++) {
+                stars[i].classList.add('selected');
+            }
+        });
+    });
+
+    // Submit feedback
+    document.getElementById('submitFeedback').addEventListener('click', (event) => {
+        event.preventDefault(); // Prevent default form submission
+        const feedbackText = document.getElementById('feedbackText').value;
+        if (rating > 0 && feedbackText) {
+            // Set the hidden input value to the selected rating
+            document.getElementById("rating").value = rating;
+
+            // Now submit the form
+            document.querySelector('form').submit(); // Submit the form
+        } else {
+            ratingMessage.textContent = 'Please provide a rating and feedback.';
+            ratingMessage.style.color = 'red';
+        }
+    });
+</script>
+</body>
+</html>

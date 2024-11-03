@@ -1,0 +1,111 @@
+{% extends 'admin/ADMINHOMEINDEX.html' %}
+
+{% block body %}
+<body>
+    <h1 class="text-center">Product Complaints</h1>
+
+    <table class="table table-responsive mt-4">
+        <thead>
+            <tr>
+                <th style="background-color: black;color: white">Complaint ID</th>
+                <th style="background-color: black;color: white">Product</th>
+                <th style="background-color: black;color: white">User</th>
+                <th style="background-color: black;color: white">Complaint</th>
+                <th style="background-color: black;color: white">Date</th>
+                <th style="background-color: black;color: white">Reply</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in data %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ i.PRODUCT.name }}</td>
+                <td>{{ i.USER.name }}</td>
+                <td>{{ i.complaints }}</td>
+                <td>{{ i.date }}</td>
+                <td>
+                    {% if i.reply == 'pending' %}
+                    <a href="/seller_send_reply/{{ i.id }}" class="btn btn-primary reply-button">Reply</a>
+                    {% else %}
+                    {{ i.reply }}
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <style>
+        /* General Page Styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #dddddd;
+            margin: 20px;
+            color: #333;
+        }
+
+        h1 {
+            color: black;
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .table {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            border-collapse: collapse;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            white-space: nowrap;
+            border-bottom: 1px solid #dddddd;
+        }
+
+        th {
+            background-color: black;
+            color: #ffffff;
+            font-size: 1.2em;
+            text-transform: uppercase;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .reply-button {
+            background-color: #3498db;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 1em;
+        }
+
+        .reply-button:hover {
+            background-color: #2980b9;
+        }
+
+        /* Responsive Design for Smaller Screens */
+        @media (max-width: 768px) {
+            .table {
+                width: 100%;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</body>
+{% endblock %}

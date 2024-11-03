@@ -1,0 +1,145 @@
+{% extends 'homeindex1.html' %}
+{% block body %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complaint Form</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        .navbar-custom {
+            background-color: #000000; /* Deep purple */
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar-brand, .navbar-nav .nav-link {
+            color: #ffffff !important;
+        }
+
+        .navbar-brand:hover, .navbar-nav .nav-link:hover {
+            color: #ffd700 !important; /* Gold */
+            text-decoration: underline;
+        }
+
+        .complaint-form-container {
+            display: none; /* Initially hidden */
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 50px auto;
+        }
+
+        .complaint-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .btn-submit, .btn-new-complaint {
+            background-color: #d9534f;
+            color: white;
+            font-size: 16px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-submit:hover, .btn-new-complaint:hover {
+            background-color: #c9302c;
+        }
+
+        .text-center {
+            margin-top: 20px;
+        }
+
+        /* Custom styles for the table header */
+        .table thead th {
+            background-color: #000000; /* Black background */
+            color: #ffffff; /* White text */
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">View Complaints</h2>
+
+    <!-- Complaints Table -->
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Serial No</th>
+                <th>Product</th>
+                <th>Complaint Date</th>
+                <th>Complaint</th>
+                <th>Reply</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Loop through complaints and display them with serial numbers -->
+            {% for i in data %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ i.PRODUCT.name }}</td>
+                <td>{{ i.date }}</td>
+                <td>{{ i.complaints }}</td>
+                <td>{{ i.reply }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{#<div class="text-center mb-4">#}
+{#    <button class="btn btn-new-complaint" onclick="toggleComplaintForm()" style="color: white">Send New Complaint</button>#}
+{#</div>#}
+
+<!-- Complaint Form Container -->
+<div class="complaint-form-container" id="complaintForm">
+    <h2 class="complaint-title">Submit Your Complaint</h2>
+
+    <form action="/send_complaint_post" method="POST">
+        {% csrf_token %}
+        <!-- Complaint Description -->
+        <div class="form-group">
+            <label for="complaint-details">Complaint:</label>
+            <textarea class="form-control" id="complaint-details" name="complaint_details" rows="5" placeholder="Describe your complaint in detail" required></textarea>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="text-center">
+            <button type="submit" class="btn btn-submit" style="color: white">Submit Complaint</button>
+        </div>
+    </form>
+</div>
+
+<!-- JavaScript to toggle the complaint form -->
+<script>
+    function toggleComplaintForm() {
+        const complaintForm = document.getElementById('complaintForm');
+        if (complaintForm.style.display === "none" || complaintForm.style.display === "") {
+            complaintForm.style.display = "block";
+        } else {
+            complaintForm.style.display = "none";
+        }
+    }
+</script>
+
+<!-- Bootstrap and jQuery JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+{% endblock %}

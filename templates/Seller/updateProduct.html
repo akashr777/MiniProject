@@ -45,6 +45,8 @@
 </style>
 
 {% block body %}
+    <button type="button" class="btn btn-secondary" onclick="window.history.back()" style="margin-left: 10px">Go Back</button>
+
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -91,6 +93,11 @@
                         <div class="form-group mb-3">
                             <label for="price">Price</label>
                             <input type="number" name="price" id="price" class="form-control" value="{{ val.price }}" placeholder="Enter product price" step="0.01" required>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="price">Unit</label>
+                            <input type="text" name="unit" id="unit" class="form-control" value="{{ val.unit }}" placeholder="Enter unit "  required>
                         </div>
 
                         <div class="form-group mb-3">

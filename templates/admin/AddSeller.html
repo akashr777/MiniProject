@@ -39,6 +39,7 @@
             display: block;
             margin-bottom: 5px;
             font-weight: bold;
+            color: black;
         }
         .form-group input[type="text"], .form-group input[type="file"], .form-group select, .form-group input[type="password"] {
             padding: 10px;
@@ -77,7 +78,7 @@
 <body>
 <div align="center">
     <div class="form-container">
-        <h1>Add Seller</h1>
+        <h1 style="color: black">Add Seller</h1>
         <form action="/addsellerCode#get-started" method="post" enctype="multipart/form-data" name="form1" id="form1">
             {% csrf_token %}
             <div class="form-group">
@@ -109,7 +110,7 @@
                 <input type="password" id="password" name="pass" placeholder="Enter password" required/>
             </div>
             <div class="form-group">
-                <input type="submit" name="Submit"  id="targetButton" value="Add Seller"/>
+                <input type="submit" name="Submit"  id="targetButton" value="Add Seller" style="font-weight: bold"/>
             </div>
         </form>
     </div></div>

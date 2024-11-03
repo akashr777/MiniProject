@@ -17,7 +17,7 @@
     }
 </style>
 {% block body %}
-
+<h1 style="text-align: center">Product Listing</h1>
     <div class="container mt-5">
 
     <!-- Search and Add Product Section -->
@@ -54,17 +54,19 @@
                 <!-- Product Details -->
                 <div class="card-body p-3">
                     <h6 class="card-title text-primary font-weight-bold">{{ i.name }}</h6>
+                    {% if i.brand  %}
                     <h6 class="card-subtitle text-muted">Brand: {{ i.brand }}</h6>
+                    {% endif %}
                     <p class="card-text small mt-2 mb-0">Stock: <strong>{{ i.stock }}</strong></p>
-                    <p class="card-text small mb-0">Price: <strong>{{ i.price }}.00 ({{ i.unit }})</strong></p>
+                    <p class="card-text small mb-0">Price: <strong>{{ i.price }}0 Per {{ i.unit }}</strong></p>
                     <p class="card-text small">Category: <strong>{{ i.CATEGORY.category }}</strong></p>
                 </div>
 
                 <!-- Action Buttons -->
                 <div class="card-footer text-center bg-light">
-                    <a href="/edit_product/{{ i.id }}" class="btn btn-outline-info btn-sm mx-1">Edit</a>
-                    <a href="/delete_product/{{ i.id }}" class="btn btn-outline-danger btn-sm mx-1">Delete</a>
-                    <a href="/add_offers/{{ i.id }}" class="btn btn-outline-secondary btn-sm mx-1">Add Offers</a>
+                    <a href="/edit_product/{{ i.id }}" class="btn bg-info btn-sm mx-1 " style="color: white">Edit</a>
+                    <a href="/delete_product/{{ i.id }}" class="btn bg-danger btn-sm mx-1 " style="color: white">Delete</a>
+                    <a href="/add_offers/{{ i.id }}" class="btn bg-secondary btn-sm mx-1" style="color: white">Add Offers</a>
                 </div>
             </div>
         </div>
